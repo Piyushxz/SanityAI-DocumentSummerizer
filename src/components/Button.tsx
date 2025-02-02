@@ -14,7 +14,7 @@ export interface ButtonProps{
 
 const variantStyles = {
     "primary":" bg-white text-black hover:opacity-50",
-    "secondary":" bg-secondaryColor text-white hover:bg-primaryColor2",
+    "secondary": "bg-white text-black hover:bg-white/50 px-8 text-sm font-normal tracking-tighter",
     "delete":"bg-red-700 text-white hover:bg-red-600 ",
     "wide":" bg-gradient-to-b from-blue-400 to-blue-70 text-white"
 }
