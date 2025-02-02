@@ -1,6 +1,7 @@
 import { Button } from "../components/Button"
 import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
+  
 export const Landing = ()=>{
     return(
         <div>
@@ -24,11 +25,11 @@ export const Landing = ()=>{
                 </div>
             </div>
 
-            <div className="mt-20 ">
+            <div className="mt-24">
                 <div className="flex justify-center">
                 <h1 className="font-primary tracking-tighter font-extrabold text-4xl md:text-6xl text-white">
                 Features
-            </h1>
+                </h1>
                 </div>
 
             <Features/>

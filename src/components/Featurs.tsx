@@ -47,7 +47,7 @@ const Features = () => {
           {featuresData.map((feature, index) => (
             <div
               key={index}
-              className={` opacity-50 hover:opacity-100 transition duration-300 p-8 text-center border-gray-800 ${
+              className={` opacity-70 hover:opacity-100 transition duration-300 p-8 text-center border-gray-800 ${
                 (index + 1) % 3 !== 0 ? 'border-r' : ''
               } ${index < featuresData.length - 3 ? 'border-b' : ''}`}
             >
