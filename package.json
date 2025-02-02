@@ -11,10 +11,13 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.3",
+    "framer": "^2.4.1",
+    "jsrepo": "^1.29.1",
+    "motion": "^12.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.1.5",
-    "react-scroll": "^1.9.0",
+    "recoil": "^0.7.7",
     "tailwindcss": "^4.0.3"
   },
   "devDependencies": {

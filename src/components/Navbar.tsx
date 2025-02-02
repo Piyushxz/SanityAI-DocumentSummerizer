@@ -1,69 +1,30 @@
-import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { animateScroll as scroller } from 'react-scroll';
-import { Link } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import React from "react";
+import { motion } from "motion/react";
 
-const Navbar: React.FC = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const scrollToAbout = () => {
-    if (location.pathname === '/') {
-      scroller.scrollTo('about-us', {
-        duration: 800,
-        delay: 0,
-        smooth: 'easeInOutQuart',
-      });
-    } else {
-      navigate('/');
-      setTimeout(() => {
-        scroller.scrollTo('about-us', {
-          duration: 800,
-          delay: 0,
-          smooth: 'easeInOutQuart',
-        });
-      }, 100);
-    }
-  };
-
+export const Navbar = () => {
   return (
-    <div className="flex justify-between gap-4 md:gap-0 md:px-12 py-4 items-center z-200 bg-black fixed top-0 w-full md:absolute z-[250]">
-      {/* Sidebar for mobile */}
-      <div className="block md:hidden">
-        <Sidebar />
-      </div>
-      
-      {/* Logo */}
-      <div className="font-montserrat mb-0">
-        <Link to="/" className="text-3xl md:text-xl lg:text-5xl font-extrabold text-white">
-          DoctChat
-        </Link>
-      </div>
-
-      {/* Navbar buttons */}
-      <div className="flex justify-center items-center space-y-4 md:space-y-0 md:space-x-6 mb-4 md:mb-0">
-        <Link
-          to="/login"
-          className="bg-black text-sm hidden md:block p-2 rounded-md hover:bg-gray-800 transition duration-300 text-white"
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="bg-black text-sm hidden md:block p-2 rounded-md hover:bg-gray-800 transition duration-300 text-white"
-        >
-          Signup
-        </Link>
-
-        <button
-          onClick={scrollToAbout}
-          className="bg-black text-sm md:text-base p-2 rounded-md hover:bg-gray-800 transition duration-300 text-white"
-        >
-          About Us
-        </button>
-      </div>
-    </div>
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, ease: "easeInOut" }}
+        className="w-full flex justify-center border-b border-gray-400/50"
+      >
+        <div className="w-4/5 flex justify-between items-center p-4">
+          <h1 className="font-primary font-extrabold text-[#FDFEFF] text-3xl text-primary tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent">
+            DoctChatAI
+          </h1>
+          <div className="flex space-x-2">
+            <button className="inline-flex items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-9 rounded-md px-4">
+              Login
+            </button>
+            <button className="inline-flex items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-9 rounded-md px-4">
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </motion.div>
+    </>
   );
 };
 
