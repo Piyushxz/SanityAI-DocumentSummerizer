@@ -1,13 +1,17 @@
-
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
+import Navbar from './components/Navbar';
+import { Features } from 'tailwindcss';
 
 function App() {
-
   return (
-    <>
-    <h1 className="text-3xl font-primary font-black">Satoshi</h1>
-
-    </>
-  )
+    <Router> {/* Wrap your app with Router */}
+      <div>
+        <Navbar />
+   
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;
