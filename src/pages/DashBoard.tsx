@@ -1,8 +1,11 @@
 import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
+import { useDocument } from "../hooks/useDocuments"
 
 export const Dashboard = () =>{
+    const {documents} = useDocument()
+    console.log(documents)
     return(
         <div className="">
             <Sidebar/>
@@ -16,11 +19,11 @@ export const Dashboard = () =>{
                         </h3>
                     </div>
                 <div className="mt-6  flex flex-wrap gap-4">
-                    <PDFCard pdfName="PDF name.pdf"/>
-                    <PDFCard pdfName="PDF name.pdf"/>
-                    <PDFCard pdfName="PDF name.pdf"/>
-
-                    <PDFCard pdfName="PDF name.pdf"/>
+                    {
+                        documents.map(({documentName,documentId},)=>
+                        <PDFCard key={documentId}  pdfName={documentName}/>
+                        )
+                    }
 
 
                 </div>
