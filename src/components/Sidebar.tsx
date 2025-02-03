@@ -1,6 +1,9 @@
 import { useRecoilState } from "recoil"
 import { sidebarOpen } from "../atoms"
 import { SidebarOpenIcon } from "./icons/SidebarOpenIcon"
+import HomeIcon from "./icons/HomeIcon"
+import { SidebarOption } from "./SidebarOption"
+import FavoritesIcon from "./icons/FavourtieIcon"
 
 export const Sidebar = ()=>{
     const [isSidebarOpen,setIsSidebarOpen] = useRecoilState(sidebarOpen)
@@ -13,9 +16,16 @@ export const Sidebar = ()=>{
         }`}
 
       >
-        <div className="flex px-2 py-2 items-center">
+        <div className="flex px-2 py-2 items-center border-b border-gray-300/20">
             <SidebarOpenIcon onClick={()=>setIsSidebarOpen(val=>!val)}/>
             <h3 className="text-xl font-bold tracking-tighter font-primary text-white lg:text-2xl">Menu</h3>
+        </div>
+
+        <div>
+
+            <SidebarOption text="Home" icon={ <HomeIcon className="text-inherit" />}/>
+            <SidebarOption text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
+
         </div>
         </div>
 
