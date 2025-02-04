@@ -10,7 +10,7 @@ export const QueryRoom = () => {
       <div className="flex flex-col w-full h-full overflow-hidden">
         <Navbar />
         <div className="flex flex-col flex-grow justify-between items-center overflow-hidden">
-          <div className="lg:w-[50vw] w-[80vw] h-full border border-white flex overflow-y-auto">
+          <div className="lg:w-[50vw] w-[80vw] h-full  flex overflow-y-auto">
             <QueryBox/>
           </div>
           <div className="mb-6">

@@ -1,8 +1,10 @@
 import {  useRef } from "react"
 import { SearchIcon } from "./icons/SearchIcon";
+import { useSetRecoilState } from "recoil";
+import { messages } from "../atoms";
 export const AISearch =()=>{
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
-  
+    const setMessages = useSetRecoilState(messages)  
     const handleInputQuery= async ()=>{
 
         if(!inputRef.current?.value ){
@@ -12,7 +14,9 @@ export const AISearch =()=>{
         if(inputRef.current.value.length  < 1){
             return
         }
-
+        const input = inputRef.current.value
+        if(!inputRef.current) return
+        setMessages(prev=>[...prev,input])
         try{
 
     
