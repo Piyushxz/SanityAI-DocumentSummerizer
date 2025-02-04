@@ -11,7 +11,7 @@ export const Sidebar = ()=>{
     console.log("sidebar",isSidebarOpen)
     return(
         <div
-        className={`bg-black top-0 left-0 w-64 h-screen fixed z-50 transition-all duration-500 border-r border-gray-300/20 ${
+        className={`bg-black top-0 left-0 w-64 h-screen fixed z-100 transition-all duration-500 border-r border-gray-300/20 ${
           isSidebarOpen ? " translate-x-0" : " -translate-x-full"
         }`}
 

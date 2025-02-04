@@ -5,12 +5,10 @@ import { useDocument } from "../hooks/useDocuments"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
-    console.log(documents)
     return(
         <div className="">
             <Sidebar/>
             <Navbar/>
-
             <div className="flex  justify-center">
                 <div className="lg:w-[70vw] w-[80vw]  text-white">
                     <div className="flex mt-6">
