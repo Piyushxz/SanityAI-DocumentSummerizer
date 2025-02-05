@@ -2,7 +2,7 @@ import { AnimatedAIResult } from "./AnimatedAIResult";
 import { RobotIcon } from "./icons/RobotIcon";
 
 interface ChatBubbleProps {
-    variant: "user" | "sender";
+    variant: "user" | "bot";
     text: string,
     isActive?:boolean
 
@@ -38,7 +38,7 @@ interface ChatBubbleProps {
             <RobotIcon/>
             </div>
             <div
-            className={`text-white bg-[#191919] px-4 py-2 rounded-lg shadow-md text-sm font-primary max-w-[30vw] break-words`}
+            className={`text-white bg-[#191919] px-4 py-2 rounded-lg shadow-md text-sm font-primary max-w-[70vw] sm:max-w-[50vw] md:max-w-[40vw] lg:max-w-[30vw] break-words`}
           >
             {
                 props.isActive? 
