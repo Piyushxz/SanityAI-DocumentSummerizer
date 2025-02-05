@@ -1,12 +1,13 @@
 import {  useRef } from "react"
 import { SearchIcon } from "./icons/SearchIcon";
-import { useSetRecoilState } from "recoil";
-import { isAIResultLoading, messages } from "../atoms";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { activeDocumentId, isAIResultLoading, messages } from "../atoms";
 import axios from "axios";
 export const AISearch =()=>{
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
     const setIsLoading = useSetRecoilState(isAIResultLoading)
     const setMessages = useSetRecoilState(messages)  
+    const activeDocId = useRecoilValue(activeDocumentId)
     const handleInputQuery= async ()=>{
 
         if(!inputRef.current?.value ){
@@ -22,9 +23,17 @@ export const AISearch =()=>{
         try{
 
             setIsLoading(true)
-            const response = await axios.post(`http://localhost:3003/api/v1/query/223121ae-ccaf-4261-bac3-baf1b5b5822e`,{
-                query:inputRef.current.value
-            })
+            const response = await axios.post(`http://localhost:3003/api/v1/query/${activeDocId}`,{
+                query:inputRef.current.value, 
+                
+
+            },
+            {
+                headers:{
+                    Authorization:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3OGFkMjU2LWZkYTEtNDI5Yy1hOTFhLTFhYjM2M2UyZDBlNiIsImlhdCI6MTczODU5MzU1Mn0.FVLDna4tmrtUQI3jVKjlqyF1FxNj00PpkkHflqCmTgI'
+                }
+            }
+            )
             
             setIsLoading(false)
             console.log(response)

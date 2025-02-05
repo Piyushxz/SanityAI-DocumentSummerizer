@@ -19,7 +19,7 @@ export const Dashboard = () =>{
                 <div className="mt-6  flex flex-wrap gap-4">
                     {
                         documents.map(({documentName,documentId},)=>
-                        <PDFCard key={documentId}  pdfName={documentName}/>
+                        <PDFCard key={documentId}  pdfName={documentName} documentId={documentId}/>
                         )
                     }
 

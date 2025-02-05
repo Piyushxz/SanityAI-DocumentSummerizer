@@ -1,11 +1,18 @@
+import { useNavigate } from "react-router-dom"
 import pdf from "../assets/pdf-svgrepo-com.svg"
 import { Button } from "./Button"
 import ChatIcon from "./icons/ChatIcon"
 import DeleteIcon from "./icons/DeleteIcon"
 import FavoritesIcon from "./icons/FavourtieIcon"
-export const PDFCard = ({pdfName}:{
-    pdfName:string
+import { useSetRecoilState } from "recoil"
+import { activeDocumentId } from "../atoms"
+export const PDFCard = ({pdfName,documentId}:{
+    pdfName:string,
+    documentId : string
 }) =>{
+
+    const navigate = useNavigate()
+    const setActiveDocumentID = useSetRecoilState(activeDocumentId)
     return(
         <div className="w-80  border border-gray-200/20 rounded-lg">
             <div className="flex justify-end">
@@ -24,7 +31,9 @@ export const PDFCard = ({pdfName}:{
                 </h3>
             </div>
             <div className="flex gap-2 mt-2">
-                <Button text="Chat" onClick={()=>{}} size="lg" variant="secondary" leftIcon={<ChatIcon/>} />
+                <Button text="Chat" onClick={()=>{navigate(`/chat/${documentId}`)
+                setActiveDocumentID(documentId)
+            }} size="lg" variant="secondary" leftIcon={<ChatIcon/>} />
             </div>
         </div>
     </div>

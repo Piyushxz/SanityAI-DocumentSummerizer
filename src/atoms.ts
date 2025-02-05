@@ -25,3 +25,9 @@ export const isAIResultLoading = atom({
     key:'isAIResultLoading',
     default:false
 })
+
+
+export const activeDocumentId = atom<string | null>({
+    key:'activeDocumentId',
+    default:null
+})
