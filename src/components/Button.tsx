@@ -16,14 +16,14 @@ const variantStyles = {
     "primary":" bg-white text-black hover:opacity-50",
     "secondary": "bg-white text-black hover:bg-white/50 px-8 text-sm font-normal tracking-tighter",
     "delete":"bg-red-700 text-white hover:bg-red-600 ",
-    "wide":" bg-gradient-to-b from-blue-400 to-blue-70 text-white"
+    "wide":" bg-[#191919] hover:bg-[#191919]/70 text-white"
 }
 
 const sizeStyles = {
     "sm":" py-1 px-2 text-sm rounded-lg",
     "md":" py-2 px-4 text-base rounded-lg",
     "lg":" py-2 px-4 text-base rounded-lg",
-    "wide":"w-full font-satoshi tracking-tighter font-semibold px-8 rounded-lg pt-4 pb-4 text-center"
+    "wide":"w-full font-primary tracking-tighter font-semibold px-8 rounded-lg pt-4 pb-4 text-center"
 }
 
 const defaultStyles = {

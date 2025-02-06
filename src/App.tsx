@@ -6,7 +6,7 @@ import { Modal } from "./components/AddContentModal"
 import { useRecoilValue } from "recoil"
 import { isContentModalOpen } from "./atoms"
 import { Toaster } from "sonner"
-
+import { AnimatePresence } from "motion/react"
 
 function App() {
   const isContentModalOp = useRecoilValue(isContentModalOpen)
@@ -15,11 +15,10 @@ function App() {
     <>
       <Toaster theme="dark"/>
 
-    {
-      isContentModalOp &&
-      <Modal/>
+      <AnimatePresence>
+        {isContentModalOp && <Modal />}
+      </AnimatePresence>
 
-    }
 
       <Routes>
         <Route path="/" element={    <Landing/>}/>
