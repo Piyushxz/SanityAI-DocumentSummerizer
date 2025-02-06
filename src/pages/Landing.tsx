@@ -4,7 +4,7 @@ import {motion} from "motion/react"
 import { toast } from "sonner"
 export const Landing = ()=>{
     return(
-        <div>
+        <div className="overflow-x-hidden">
             <Navbar/>
             <div className="flex flex-col items-center justify-center mt-24">
                 <motion.div 
@@ -48,8 +48,8 @@ export const Landing = ()=>{
                 Features
                 </h1>
                 </div>
+                <Features/>
 
-            <Features/>
             </div>
         </div>
     )
