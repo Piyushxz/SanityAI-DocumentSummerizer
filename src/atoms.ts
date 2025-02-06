@@ -31,3 +31,8 @@ export const activeDocumentId = atom<string | null>({
     key:'activeDocumentId',
     default:null
 })
+
+export const isContentModalOpen = atom({
+    key:"isContentModalOpen",
+    default:false
+})

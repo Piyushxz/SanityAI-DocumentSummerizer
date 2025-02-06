@@ -10,7 +10,7 @@ export const AnimatedAIResult = ({ result = "" }: { result?: string }) => {
                     initial={{ opacity: 0 }}
                     className="px-1"
                     key={index}
-                    animate={{ opacity: 1, y: 0 }}
+                    animate={{ opacity: 1 }}
                     transition={{
                         delay: 0.01 + index * 0.1,
                         ease: "easeInOut",

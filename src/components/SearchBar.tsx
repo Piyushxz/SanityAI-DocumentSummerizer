@@ -8,6 +8,7 @@ export const AISearch =()=>{
     const setIsLoading = useSetRecoilState(isAIResultLoading)
     const setMessages = useSetRecoilState(messages)  
     const activeDocId = useRecoilValue(activeDocumentId)
+    console.log(activeDocId)
     const handleInputQuery= async ()=>{
 
         if(!inputRef.current?.value ){

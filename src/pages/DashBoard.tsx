@@ -1,10 +1,13 @@
+import { useSetRecoilState } from "recoil"
 import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
+import { isContentModalOpen } from "../atoms"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
+    const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
     return(
         <div className="">
             <Sidebar/>
@@ -26,6 +29,7 @@ export const Dashboard = () =>{
 
                 </div>
 
+                        <button onClick={()=>setContentOpenStatus(val=>!val)}>test</button>
 
                 </div>
             </div>

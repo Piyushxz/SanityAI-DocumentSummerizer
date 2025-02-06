@@ -1,6 +1,7 @@
 import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
 import {motion} from "motion/react"
+import { toast } from "sonner"
 export const Landing = ()=>{
     return(
         <div>
@@ -34,7 +35,8 @@ export const Landing = ()=>{
                           ease: "easeInOut",
                         }}
                 className="mt-6">
-                <button className="inline-flex items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8">
+                <button onClick={()=>toast.success('Welcome!')}
+                className="inline-flex items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8">
                     Start Now
                 </button>
                 </motion.div>
