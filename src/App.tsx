@@ -13,7 +13,7 @@ function App() {
   return (
 
     <>
-      <Toaster theme="dark"/>
+      <Toaster theme="dark" richColors/>
 
       <AnimatePresence>
         {isContentModalOp && <Modal />}
@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={    <Landing/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/chat/:id" element={<QueryRoom/>}/>
+        <Route path="/:id" element={<QueryRoom/>}/>
       </Routes>
     </>
   )

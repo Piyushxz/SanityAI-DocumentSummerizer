@@ -1,4 +1,18 @@
+import { useSetRecoilState } from "recoil";
+import { isFileSelected } from "../atoms";
+import { toast } from "sonner";
+
 const PDFUpload = () => {
+    const setFile = useSetRecoilState(isFileSelected)
+    const handleDocumentInput = (e:React.FormEvent<HTMLInputElement>)=>{
+
+        const target = e.target as HTMLInputElement & {
+            files:FileList
+        }
+        console.log(target.files[0])
+        setFile(target.files[0])
+        toast.success(`${target.files[0].name} Selected`)
+    }
     return (
       <div className="flex items-center justify-center w-full">
         <label
@@ -28,7 +42,8 @@ const PDFUpload = () => {
               PDF only (MAX. 800x400px)
             </p>
           </div>
-          <input id="dropzone-file" type="file" accept="application/pdf" className="hidden" />
+          <input onChange={handleDocumentInput}
+          id="dropzone-file" type="file" accept="application/pdf" className="hidden" />
         </label>
       </div>
     );

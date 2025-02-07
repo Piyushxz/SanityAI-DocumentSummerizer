@@ -3,14 +3,19 @@ import { SearchIcon } from "./icons/SearchIcon";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { activeDocumentId, isAIResultLoading, messages } from "../atoms";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 export const AISearch =()=>{
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
     const setIsLoading = useSetRecoilState(isAIResultLoading)
     const setMessages = useSetRecoilState(messages)  
     const activeDocId = useRecoilValue(activeDocumentId)
     console.log(activeDocId)
+
+    const params = useParams()
+    console.log(params.id,"params")
     const handleInputQuery= async ()=>{
 
+        console.log(activeDocId)
         if(!inputRef.current?.value ){
             return
         }
@@ -24,7 +29,7 @@ export const AISearch =()=>{
         try{
 
             setIsLoading(true)
-            const response = await axios.post(`http://localhost:3003/api/v1/query/${activeDocId}`,{
+            const response = await axios.post(`http://localhost:3003/api/v1/query/${params.id}`,{
                 query:inputRef.current.value, 
                 
 

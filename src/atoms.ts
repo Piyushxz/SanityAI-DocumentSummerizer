@@ -36,3 +36,9 @@ export const isContentModalOpen = atom({
     key:"isContentModalOpen",
     default:false
 })
+
+
+export const isFileSelected = atom<File | null>({
+    key:"isFileSelected",
+    default:null
+})

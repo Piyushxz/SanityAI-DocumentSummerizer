@@ -22,7 +22,7 @@ export const useDocument =  ()=>{
     {
         getDocuments()
 
-        const id = setInterval(getDocuments,5000);
+        const id = setInterval(getDocuments,10000);
 
         return ()=> clearInterval(id)
     }
