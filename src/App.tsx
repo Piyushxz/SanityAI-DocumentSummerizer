@@ -3,13 +3,15 @@ import { Landing } from "./pages/Landing"
 import { Dashboard } from "./pages/DashBoard"
 import { QueryRoom } from "./pages/QueryRoom"
 import { Modal } from "./components/AddContentModal"
+import { DeleteModal } from "./components/DeleteModal"
 import { useRecoilValue } from "recoil"
-import { isContentModalOpen } from "./atoms"
+import { isContentModalOpen, isDeleteModalOpen } from "./atoms"
 import { Toaster } from "sonner"
 import { AnimatePresence } from "motion/react"
 
 function App() {
   const isContentModalOp = useRecoilValue(isContentModalOpen)
+  const isDelModalOpen = useRecoilValue(isDeleteModalOpen)
   return (
 
     <>
@@ -17,6 +19,7 @@ function App() {
 
       <AnimatePresence>
         {isContentModalOp && <Modal />}
+        {isDelModalOpen && <DeleteModal/>}
       </AnimatePresence>
 
 

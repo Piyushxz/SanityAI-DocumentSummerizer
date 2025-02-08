@@ -4,13 +4,17 @@ import { SidebarOpenIcon } from "./icons/SidebarOpenIcon"
 import HomeIcon from "./icons/HomeIcon"
 import { SidebarOption } from "./SidebarOption"
 import FavoritesIcon from "./icons/FavourtieIcon"
-
+import {motion} from "motion/react"
 export const Sidebar = ()=>{
     const [isSidebarOpen,setIsSidebarOpen] = useRecoilState(sidebarOpen)
 
     console.log("sidebar",isSidebarOpen)
     return(
-        <div
+        <motion.div
+        animate={{ baseFrequency: 0.5 }}
+
+        transition={{ease: "easeInOut",
+          type: "spring", bounce: 0.65,    visualDuration: 0.5}}
         className={`bg-black top-0 left-0 w-64 h-screen fixed z-100 transition-all duration-500 border-r border-gray-300/20 ${
           isSidebarOpen ? " translate-x-0" : " -translate-x-full"
         }`}
@@ -27,7 +31,7 @@ export const Sidebar = ()=>{
             <SidebarOption text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
 
         </div>
-        </div>
+        </motion.div>
 
     )
 }

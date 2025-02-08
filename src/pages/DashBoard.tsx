@@ -4,6 +4,7 @@ import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
 import { isContentModalOpen } from "../atoms"
+import PlusIcon from "../components/icons/PlusIcon"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
@@ -20,7 +21,13 @@ export const Dashboard = () =>{
                         </h3>
                     </div>
                 <div className="mt-6  flex flex-wrap gap-4">
+                    <div onClick={()=>setContentOpenStatus(val=>!val)}
+                    className="cursor-pointer w-80 h-62 border-2 border-gray-300/30 border-dashed rounded-lg flex justify-center items-center">
+                        <PlusIcon size={30}/>
+                    </div>
+
                     {
+
                         documents.map(({documentName,documentId},)=>
                         <PDFCard key={documentId}  pdfName={documentName} documentId={documentId}/>
                         )
@@ -29,7 +36,6 @@ export const Dashboard = () =>{
 
                 </div>
 
-                        <button onClick={()=>setContentOpenStatus(val=>!val)}>test</button>
 
                 </div>
             </div>

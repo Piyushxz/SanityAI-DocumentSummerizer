@@ -1,4 +1,4 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { isContentModalOpen, isFileSelected } from "../atoms";
 import { motion } from "framer-motion";
 import PDFUpload from "./PDFUpload";
@@ -10,7 +10,7 @@ import { useRef } from "react";
 import axios from "axios";
 
 export const Modal = () => {
-    const [isModalOpen, setIsModalOpen] = useRecoilState(isContentModalOpen);
+    const  setIsModalOpen = useSetRecoilState(isContentModalOpen);
     const inputRef = useRef<HTMLInputElement>(null)
     const [fileVal,setFileVal] = useRecoilState(isFileSelected)
 
@@ -43,9 +43,8 @@ export const Modal = () => {
                 }
             );
     
-            // Close modal only after upload is successful
             setIsModalOpen(false);
-            setFileVal(null); // Clear file after successful upload
+            setFileVal(null);
         } catch (err) {
             console.error(err);
         }
@@ -56,9 +55,9 @@ export const Modal = () => {
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }} 
                     animate={{ opacity: 1, scale: 1 }}  
-                    exit={{ opacity: 0,scale:0}} 
+                    exit={{ opacity: 0,scale:0.9}} 
                     transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="fixed inset-0 flex items-center justify-center bg-black/50 z-50"
+                    className="fixed inset-0 flex items-center justify-center bg-black/70 z-50"
                 >
                     <div className="w-[500px] bg-black border border-gray-600/70 shadow-xl rounded-lg">
                         <div className="flex justify-between p-4 border-b border-gray-600/70 items-center">

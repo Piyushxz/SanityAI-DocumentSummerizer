@@ -5,7 +5,7 @@ import ChatIcon from "./icons/ChatIcon"
 import DeleteIcon from "./icons/DeleteIcon"
 import FavoritesIcon from "./icons/FavourtieIcon"
 import { useSetRecoilState } from "recoil"
-import { activeDocumentId } from "../atoms"
+import { activeDocumentData, activeDocumentId, isDeleteModalOpen } from "../atoms"
 import { toast } from "sonner"
 import axios from "axios"
 export const PDFCard = ({pdfName,documentId}:{
@@ -15,36 +15,18 @@ export const PDFCard = ({pdfName,documentId}:{
 
     const navigate = useNavigate()
     const setActiveDocumentID = useSetRecoilState(activeDocumentId)
-    const handleDocumentDelete = async () => {
-        console.log(documentId); 
-        try {
-            const response = await toast.promise(
-                axios.delete(`http://localhost:3003/api/v1/documents`, {
-                    headers: {
-                        Authorization:
-                            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3OGFkMjU2LWZkYTEtNDI5Yy1hOTFhLTFhYjM2M2UyZDBlNiIsImlhdCI6MTczODU5MzU1Mn0.FVLDna4tmrtUQI3jVKjlqyF1FxNj00PpkkHflqCmTgI',
-                        "Content-Type": "application/json",
-                    },
-                    data: { documentId },
-                }),
-                {
-                    loading: "Deleting...",
-                    success: (data) => "Document has been deleted successfully!",
-                    error: "Failed to delete document. Please try again.",
-                }
-            );
-            console.log(response); 
-        } catch (e) {
-            console.log(e); 
-        }
-    };
+    const setActiveDocData = useSetRecoilState(activeDocumentData)
+    const setDelModal = useSetRecoilState(isDeleteModalOpen)
+
     
     return(
         <div className="w-80  border border-gray-200/20 rounded-lg">
             <div className="flex justify-end">
                 <div className="flex gap-2 p-2 absolute">
                     <FavoritesIcon/>
-                    <div onClick={handleDocumentDelete}>
+                    <div onClick={()=>{setDelModal(true)
+                        setActiveDocData({documentId:documentId,documentName:pdfName})
+                    }}>
                     <DeleteIcon />
 
                     </div>

@@ -9,7 +9,6 @@ const PDFUpload = () => {
         const target = e.target as HTMLInputElement & {
             files:FileList
         }
-        console.log(target.files[0])
         setFile(target.files[0])
         toast.success(`${target.files[0].name} Selected`)
     }

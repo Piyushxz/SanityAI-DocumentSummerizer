@@ -4,6 +4,15 @@ interface Message{
     message:string,
     sentBy:'user' | 'bot'
 }
+interface Document{
+    documentName:string | null,
+    documentId:string | null
+}
+
+export const activeDocumentData = atom<Document>({
+    key:"activeDocumentData",
+    default:{documentId:null,documentName:null}
+})
 export const sidebarOpen = atom({
     key:"sidebarOpen",
     default:true
@@ -41,4 +50,9 @@ export const isContentModalOpen = atom({
 export const isFileSelected = atom<File | null>({
     key:"isFileSelected",
     default:null
+})
+
+export const isDeleteModalOpen = atom<boolean>({
+    key:"isDeleteModalOpen",
+    default:false
 })

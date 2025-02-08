@@ -1,4 +1,4 @@
-
+import {motion} from "motion/react"
 import logo1 from '../assets/icon1.svg';
 import logo2 from '../assets/icon2.svg';
 import logo3 from '../assets/icon3.svg';
@@ -41,7 +41,14 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <div className="relative text-white py-12 overflow-x-hidden">
+    <motion.div initial={{ opacity: 0, y: 0 }}
+    animate={{ opacity: 1, y: -10 }}
+    transition={{
+      duration: 0.3,
+      delay:1,
+      ease: "easeInOut",
+    }}
+     className="relative text-white py-12 overflow-y-hidden">
       <div className="mx-auto max-w-5xl overflow-hidden">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
           {featuresData.map((feature, index) => (
@@ -65,7 +72,7 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
