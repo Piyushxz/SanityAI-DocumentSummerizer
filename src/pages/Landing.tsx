@@ -1,4 +1,4 @@
-import { Navbar } from "../components/Navbar"
+import Navbar from "../components/Navbar"
 import Features from "../components/Featurs"
 import {motion} from "motion/react"
 export const Landing = ()=>{
