@@ -2,6 +2,7 @@ import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
 import {motion} from "motion/react"
 import { toast } from "sonner"
+import Aboutus from "../components/Aboutus"
 export const Landing = ()=>{
     return(
         <div className="overflow-x-hidden">
@@ -61,6 +62,7 @@ export const Landing = ()=>{
                 </h1>
                 </motion.div>
                 <Features/>
+                <Aboutus/>
 
             </div>
         </div>
