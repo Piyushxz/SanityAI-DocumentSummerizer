@@ -1,4 +1,4 @@
-
+import {motion} from "motion/react"
 import logo1 from '../assets/icon1.svg';
 import logo2 from '../assets/icon2.svg';
 import logo3 from '../assets/icon3.svg';
@@ -41,23 +41,30 @@ const featuresData = [
 
 const Features = () => {
   return (
-    <div className="relative text-white py-12">
-      <div className="container mx-auto max-w-5xl">
+    <motion.div initial={{ opacity: 0, y: 0 }}
+    animate={{ opacity: 1, y: -10 }}
+    transition={{
+      duration: 0.3,
+      delay:1,
+      ease: "easeInOut",
+    }}
+     className="relative text-white py-12 overflow-y-hidden">
+      <div className="mx-auto max-w-5xl overflow-hidden">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0">
           {featuresData.map((feature, index) => (
             <div
               key={index}
-              className={` opacity-70 hover:opacity-100 transition duration-300 p-8 text-center border-gray-800 ${
+              className={`opacity-70 hover:opacity-100 transition duration-300 p-6 text-center border-gray-800 ${
                 (index + 1) % 3 !== 0 ? 'border-r' : ''
               } ${index < featuresData.length - 3 ? 'border-b' : ''}`}
             >
               <div className="group relative">
                 {/* Icon */}
                 <span className="inline-block mb-6 mx-auto w-16 h-16">
-                  <img src={feature.icon} alt={feature.title} className="" />
+                  <img src={feature.icon} alt={feature.title} className="max-w-full h-auto" />
                 </span>
                 {/* Title */}
-                <h4 className=" font-primary font-semibold text-xl mb-4">{feature.title}</h4>
+                <h4 className="font-primary font-semibold text-xl mb-4">{feature.title}</h4>
                 {/* Description */}
                 <p className="font-primary text-gray-400">{feature.description}</p>
               </div>
@@ -65,8 +72,10 @@ const Features = () => {
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
+
+
 
 export default Features;

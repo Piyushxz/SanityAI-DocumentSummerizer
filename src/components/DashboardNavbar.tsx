@@ -14,7 +14,7 @@ export const Navbar = ()=>{
         animate={{opacity:1,y:0}}
         transition={{delay:0.2,ease:"easeInOut"}}
         className="w-[100vw] flex justify-between items-center
-         border-b border-gray-400/30 p-2 z-100">
+         border-b border-gray-400/30 p-2 z-100 ">
             <div className=" ">
                 <SidebarCloseIcon onClick={()=>setIsSidebarOpen(val=>!val)}/>
             </div>
