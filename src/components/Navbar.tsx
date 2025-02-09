@@ -27,21 +27,15 @@ export const Navbar = () => {
               to="about-us"
               smooth={true}
               duration={500}
-              className="cursor-pointer text-white hover:text-blue-500 font-medium text-sm px-4 py-2"
+              className="cursor-pointer font-primary rounded-lg border border-gray-600/50 tracking-tighter transition-all duration-300 ease-in-out  text-white hover:text-blue-500 font-medium text-xs lg:text-sm px-4 py-2"
             >
               About Us
             </Link>
             <button
-              className="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2"
+              className="text-white font-primary tracking-tighter transition-all duration-300 ease-in-out bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-xs lg:text-sm px-4 py-2"
               onClick={() => navigate('/login')}
             >
               Login
-            </button>
-            <button
-              className="text-white bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2"
-              onClick={() => navigate('/signup')}
-            >
-              Signup
             </button>
           </div>
         </div>
