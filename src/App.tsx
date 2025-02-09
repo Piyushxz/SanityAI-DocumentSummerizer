@@ -1,6 +1,10 @@
 import { Route, Routes } from "react-router-dom"
 import { Landing } from "./pages/Landing"
 import { Dashboard } from "./pages/DashBoard"
+
+import Login from "./components/Login"
+import Signup from "./components/Signup"
+
 import { QueryRoom } from "./pages/QueryRoom"
 import { Modal } from "./components/AddContentModal"
 import { DeleteModal } from "./components/DeleteModal"
@@ -8,6 +12,7 @@ import { useRecoilValue } from "recoil"
 import { isContentModalOpen, isDeleteModalOpen } from "./atoms"
 import { Toaster } from "sonner"
 import { AnimatePresence } from "motion/react"
+
 
 function App() {
   const isContentModalOp = useRecoilValue(isContentModalOpen)
@@ -24,9 +29,14 @@ function App() {
 
 
       <Routes>
-        <Route path="/" element={    <Landing/>}/>
+        <Route path="/" element={<Landing/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
+
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/signup" element={<Signup/>}/>
+
         <Route path="/:id" element={<QueryRoom/>}/>
+
       </Routes>
     </>
   )
