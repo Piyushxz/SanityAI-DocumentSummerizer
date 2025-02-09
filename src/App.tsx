@@ -12,6 +12,7 @@ import { useRecoilValue } from "recoil"
 import { isContentModalOpen, isDeleteModalOpen } from "./atoms"
 import { Toaster } from "sonner"
 import { AnimatePresence } from "motion/react"
+import Aboutus from "./components/Aboutus"
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
 
         <Route path="/login" element={<Login/>}/>
         <Route path="/signup" element={<Signup/>}/>
+        <Route path="/aboutus" element={<Aboutus/>}/>
 
         <Route path="/:id" element={<QueryRoom/>}/>
 
