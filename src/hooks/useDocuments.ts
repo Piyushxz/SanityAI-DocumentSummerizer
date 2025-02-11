@@ -11,7 +11,7 @@ export const useDocument =  ()=>{
    async function getDocuments(){
         const response = await axios.get('http://localhost:3003/api/v1/documents',{
             headers:{
-                Authorization:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc3OGFkMjU2LWZkYTEtNDI5Yy1hOTFhLTFhYjM2M2UyZDBlNiIsImlhdCI6MTczODU5MzU1Mn0.FVLDna4tmrtUQI3jVKjlqyF1FxNj00PpkkHflqCmTgI'
+                Authorization:localStorage.getItem("token")
             }
         })
 
