@@ -9,6 +9,12 @@ interface Document{
     documentId:string | null
 }
 
+
+export const loggedInUserName = atom({
+    key:"loggedInUserName",
+    default:""
+})
+
 export const activeDocumentData = atom<Document>({
     key:"activeDocumentData",
     default:{documentId:null,documentName:null}

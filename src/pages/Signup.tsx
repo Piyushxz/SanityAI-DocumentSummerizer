@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {Navbar} from './Navbar'; // Ensure the correct import path
+import {Navbar} from '../components/Navbar'; // Ensure the correct import path
 
-const Login: React.FC = () => {
+const Signup: React.FC = () => {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -13,12 +14,12 @@ const Login: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/user/login', {
+      const response = await fetch('http://localhost:3000/user/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ username, email, password }),
       });
 
       const data = await response.json();
@@ -47,7 +48,7 @@ const Login: React.FC = () => {
               transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
               className="lg:text-5xl text-3xl font-extrabold lg:leading-[55px] text-white"
             >
-              Seamless Login for Exclusive Access
+              Join Us for Exclusive Access
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: -20 }}
@@ -55,7 +56,7 @@ const Login: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
               className="text-sm mt-6 text-gray-300"
             >
-              Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortlessly access your account.
+              Create an account to enjoy our AI-powered Document Summarizer and other exclusive features.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: -20 }}
@@ -71,7 +72,7 @@ const Login: React.FC = () => {
               transition={{ delay: 0.8, duration: 0.8, ease: "easeInOut" }}
               className="text-sm mt-12 text-gray-300"
             >
-              Don't have an account? <a href="javascript:void(0);" className="text-blue-400 font-semibold hover:underline ml-1" onClick={() => navigate('/signup')}>Register here</a>
+              Already have an account? <a href="/login" className="text-blue-400 font-semibold hover:underline ml-1">Login here</a>
             </motion.p>
           </div>
 
@@ -83,12 +84,24 @@ const Login: React.FC = () => {
             className="max-w-md md:ml-auto w-full bg-black bg-opacity-70 p-8 rounded-lg shadow-lg"
           >
             <h3 className="text-white text-3xl font-extrabold mb-8">
-              Login
+              Signup
             </h3>
 
             {error && <p className="text-red-500 mb-4">{error}</p>}
 
             <div className="space-y-4">
+              <div>
+                <input
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Username"
+                />
+              </div>
               <div>
                 <input
                   name="email"
@@ -105,7 +118,7 @@ const Login: React.FC = () => {
                 <input
                   name="password"
                   type="password"
-                  autoComplete="current-password"
+                  autoComplete="new-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -113,24 +126,11 @@ const Login: React.FC = () => {
                   placeholder="Password"
                 />
               </div>
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div className="flex items-center">
-                  <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
-                  <label htmlFor="remember-me" className="ml-3 block text-sm text-gray-300">
-                    Remember me
-                  </label>
-                </div>
-                <div className="text-sm">
-                  <a href="javascript:void(0);" className="text-blue-400 hover:text-blue-300 font-semibold">
-                    Forgot your password?
-                  </a>
-                </div>
-              </div>
             </div>
 
             <div className="mt-8">
               <button type="submit" className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 focus:outline-none">
-                Log in
+                Sign up
               </button>
             </div>
 
@@ -165,4 +165,4 @@ const Login: React.FC = () => {
   );
 };
 
-export default Login;
+export default Signup;

@@ -1,54 +1,77 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {Navbar} from './Navbar'; // Ensure the correct import path
-
-const Signup: React.FC = () => {
+import axios from 'axios';
+import { toast } from 'sonner';
+import { Button } from '../components/Button';
+import { useSetRecoilState } from 'recoil';
+import { loggedInUserName } from '../atoms';
+const Login: React.FC = () => {
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [isLoading,setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
+  const setActiveUser = useSetRecoilState(loggedInUserName)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
+  
+    // Ensure username and password are not empty
+    if (!username || !password) {
+      toast.error("Username and password are required!");
+      return;
+    }
+  
+    setIsLoading(true);
+  
     try {
-      const response = await fetch('http://localhost:3000/user/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
+      const response = await axios.post("http://localhost:3003/api/v1/user/signin", {
+        username,
+        password,
       });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        // Save the token and navigate to the home page
-        localStorage.setItem('token', data.token);
-        navigate('/');
+  
+      console.log(response);
+  
+      toast.success("Login successful, redirecting...");
+      setActiveUser(response.data.username);
+      localStorage.setItem("token", response.data.token);
+      navigate("/dashboard");
+    } catch (error: any) {
+      if (error.response) {
+        // Server responded with a status code outside of 2xx
+        if (error.response.status === 404) {
+          toast.error("User does not exist");
+        } else if (error.response.status === 500) {
+          toast.error("Could not sign in, server error!");
+        } else {
+          toast.error(error.response.data.message || "An unexpected error occurred");
+        }
+      } else if (error.request) {
+        // No response from server
+        toast.error("No response from server. Please check your connection.");
       } else {
-        setError(data.message);
+        // Other errors (e.g., network issues)
+        toast.error("An error occurred. Please try again.");
       }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-blue-900">
-      <Navbar />
-      <div className="flex items-center justify-center min-h-screen py-6 px-4">
+      
+      <div className="flex items-center flex-col justify-center min-h-screen py-6 px-4">
         <div className="grid md:grid-cols-2 items-center gap-10 max-w-6xl max-md:max-w-md w-full">
-          <div>
+          <div className='font-primary'>
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
               className="lg:text-5xl text-3xl font-extrabold lg:leading-[55px] text-white"
             >
-              Join Us for Exclusive Access
+              Seamless Login for Exclusive Access
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: -20 }}
@@ -56,7 +79,7 @@ const Signup: React.FC = () => {
               transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
               className="text-sm mt-6 text-gray-300"
             >
-              Create an account to enjoy our AI-powered Document Summarizer and other exclusive features.
+              Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortlessly access your account.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: -20 }}
@@ -72,22 +95,26 @@ const Signup: React.FC = () => {
               transition={{ delay: 0.8, duration: 0.8, ease: "easeInOut" }}
               className="text-sm mt-12 text-gray-300"
             >
-              Already have an account? <a href="/login" className="text-blue-400 font-semibold hover:underline ml-1">Login here</a>
+              Don't have an account? <a href="javascript:void(0);" className="text-blue-400 font-semibold hover:underline ml-1" onClick={() => navigate('/signup')}>Register here</a>
             </motion.p>
           </div>
 
           <motion.form
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.4,
+          
+              ease: "easeInOut",
+
+            }}
             onSubmit={handleSubmit}
             className="max-w-md md:ml-auto w-full bg-black bg-opacity-70 p-8 rounded-lg shadow-lg"
           >
-            <h3 className="text-white text-3xl font-extrabold mb-8">
-              Signup
+            <h3 className="text-white font-primary text-3xl font-extrabold mb-8">
+              Login
             </h3>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
 
             <div className="space-y-4">
               <div>
@@ -99,26 +126,14 @@ const Signup: React.FC = () => {
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                   className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Username"
-                />
-              </div>
-              <div>
-                <input
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Email address"
+                  placeholder="username"
                 />
               </div>
               <div>
                 <input
                   name="password"
                   type="password"
-                  autoComplete="new-password"
+                  autoComplete="current-password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -126,12 +141,23 @@ const Signup: React.FC = () => {
                   placeholder="Password"
                 />
               </div>
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center">
+                  <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+                  <label htmlFor="remember-me" className="ml-3 block text-sm text-gray-300">
+                    Remember me
+                  </label>
+                </div>
+                <div className="text-sm">
+                  <a href="javascript:void(0);" className="text-blue-400 hover:text-blue-300 font-semibold">
+                    Forgot your password?
+                  </a>
+                </div>
+              </div>
             </div>
 
             <div className="mt-8">
-              <button type="submit" className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 focus:outline-none">
-                Sign up
-              </button>
+                <Button isLoading={isLoading} variant='form' size='wide' text='Login' />
             </div>
 
             <div className="my-4 flex items-center gap-4">
@@ -165,4 +191,4 @@ const Signup: React.FC = () => {
   );
 };
 
-export default Signup;
+export default Login;

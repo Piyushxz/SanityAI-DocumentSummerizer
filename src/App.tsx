@@ -2,8 +2,8 @@ import { Route, Routes } from "react-router-dom"
 import { Landing } from "./pages/Landing"
 import { Dashboard } from "./pages/DashBoard"
 
-import Login from "./components/Login"
-import Signup from "./components/Signup"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
 import { QueryRoom } from "./pages/QueryRoom"
 import { Modal } from "./components/AddContentModal"
