@@ -1,14 +1,15 @@
-import { useSetRecoilState } from "recoil"
+import { useRecoilValue, useSetRecoilState } from "recoil"
 import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
-import { isContentModalOpen } from "../atoms"
+import { isContentModalOpen, loggedInUserName } from "../atoms"
 import PlusIcon from "../components/icons/PlusIcon"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
+    const username = useRecoilValue(loggedInUserName)
     return(
         <div className="">
             <Sidebar/>
@@ -17,7 +18,7 @@ export const Dashboard = () =>{
                 <div className="lg:w-[70vw] w-[80vw]  text-white">
                     <div className="flex mt-6">
                         <h3 className="text-wrap text-3xl font-extrabold capitalize font-primary tracking-tighter md:text-4xl">
-                            Welcome , testUser!
+                            Welcome , {username}!
                         </h3>
                     </div>
                 <div className="mt-6  flex flex-wrap gap-4">

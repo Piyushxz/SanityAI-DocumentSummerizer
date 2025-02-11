@@ -1,47 +1,54 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {Navbar} from '../components/Navbar'; // Ensure the correct import path
-
+import { Button } from '../components/Button';
+import axios from 'axios';
+import { toast } from 'sonner';
 const Signup: React.FC = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [isLoading,setIsLoading] = useState<boolean>(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/user/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, email, password }),
-      });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        // Save the token and navigate to the home page
-        localStorage.setItem('token', data.token);
-        navigate('/');
+      setIsLoading(true)
+      const response = await axios.post('http://localhost:3003/api/v1/user/signup',{
+        username,
+        email,
+        password
+      })
+      console.log(response)
+      toast.success("Signed up successfully")
+      navigate('/login')
+      setIsLoading(false)
+    } catch (error:any) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          toast.error("Invalid format");
+        } else if (error.response.status === 500) {
+          toast.error("Could not sign in, server error!");
+        } else {
+          toast.error(error.response.data.message || "An unexpected error occurred");
+        }
+      } else if (error.request) {
+        toast.error("No response from server. Please check your connection.");
       } else {
-        setError(data.message);
+        toast.error("An error occurred. Please try again.");
       }
-    } catch (error) {
-      setError('An error occurred. Please try again.');
     }
+    setIsLoading(false)
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-black to-blue-900">
-      <Navbar />
       <div className="flex items-center justify-center min-h-screen py-6 px-4">
         <div className="grid md:grid-cols-2 items-center gap-10 max-w-6xl max-md:max-w-md w-full">
-          <div>
+          <div className='font-primary'>
             <motion.h2
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -77,31 +84,19 @@ const Signup: React.FC = () => {
           </div>
 
           <motion.form
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0}}
+            transition={{ delay: 0.2, ease: "easeInOut" }}
             onSubmit={handleSubmit}
             className="max-w-md md:ml-auto w-full bg-black bg-opacity-70 p-8 rounded-lg shadow-lg"
           >
-            <h3 className="text-white text-3xl font-extrabold mb-8">
+            <h3 className="text-white font-primary text-3xl font-extrabold mb-8">
               Signup
             </h3>
 
-            {error && <p className="text-red-500 mb-4">{error}</p>}
 
             <div className="space-y-4">
-              <div>
-                <input
-                  name="username"
-                  type="text"
-                  autoComplete="username"
-                  required
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Username"
-                />
-              </div>
+
               <div>
                 <input
                   name="email"
@@ -110,8 +105,20 @@ const Signup: React.FC = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-gray-800 w-full text-sm font-primary text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Email address"
+                />
+              </div>
+              <div>
+                <input
+                  name="username"
+                  type="text"
+                  autoComplete="username"
+                  required
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  className="bg-gray-800 w-full  font-primary text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Username"
                 />
               </div>
               <div>
@@ -122,16 +129,14 @@ const Signup: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-gray-800 w-full font-primary text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="Password"
                 />
               </div>
             </div>
 
             <div className="mt-8">
-              <button type="submit" className="w-full shadow-xl py-2.5 px-4 text-sm font-semibold rounded text-white bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 focus:outline-none">
-                Sign up
-              </button>
+                <Button isLoading={isLoading}variant='form' size='wide' text='SignUp'/>
             </div>
 
             <div className="my-4 flex items-center gap-4">
