@@ -10,6 +10,7 @@ export const Dashboard = () =>{
     const {documents} = useDocument()
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
     const username = useRecoilValue(loggedInUserName)
+    console.log(username)
     return(
         <div className="">
             <Sidebar/>
@@ -17,7 +18,7 @@ export const Dashboard = () =>{
             <div className="flex  justify-center">
                 <div className="lg:w-[70vw] w-[80vw]  text-white">
                     <div className="flex mt-6">
-                        <h3 className="text-wrap text-3xl font-extrabold capitalize font-primary tracking-tighter md:text-4xl">
+                        <h3 className="text-wrap text-3xl font-extrabold  font-primary tracking-tighter md:text-4xl">
                             Welcome , {username}!
                         </h3>
                     </div>
