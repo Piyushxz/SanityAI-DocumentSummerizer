@@ -1,4 +1,4 @@
-import { useRecoilState} from "recoil";
+import {  useRecoilValue} from "recoil";
 import { ChatBubble } from "./ChatBubble";
 import { isAIResultLoading, messages } from "../atoms";
 import { useRef
@@ -8,8 +8,8 @@ import { useEffect } from "react";
 
 export const QueryBox = () => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [allMessages,setAllMessages] = useRecoilState(messages)
-  const [isLoading,setIsLoading] = useRecoilState(isAIResultLoading)
+  const allMessages = useRecoilValue(messages)
+  const isLoading = useRecoilValue(isAIResultLoading)
 
   console.log("loading,s",isLoading)
     useEffect(()=>{

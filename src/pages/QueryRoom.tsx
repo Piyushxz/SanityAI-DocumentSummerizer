@@ -3,17 +3,18 @@ import { Navbar } from "../components/DashboardNavbar";
 import { QueryBox } from "../components/QueryBox";
 import { AISearch } from "../components/SearchBar";
 import { Sidebar } from "../components/Sidebar";
+import {  useSetRecoilState } from "recoil";
+import { activeSidebarOption } from "../atoms";
+
 
 export const QueryRoom = () => {
 
+  const setActiveSidebarOption = useSetRecoilState(activeSidebarOption)
   useEffect(()=>{
 
-  
-    
+    setActiveSidebarOption({option:"doc"})
 
-    // return ()=>{
-    //   setActiveSidebarOption({option:"home"})
-    // }
+
   },[])
   return (
     <div>

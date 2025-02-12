@@ -23,7 +23,7 @@ export const DeleteModal = ()=>{
                 }),
                 {
                     loading: "Deleting...",
-                    success: (data) => "Document has been deleted successfully!",
+                    success: () => "Document has been deleted successfully!",
                     error: "Failed to delete document. Please try again.",
                 }
             );

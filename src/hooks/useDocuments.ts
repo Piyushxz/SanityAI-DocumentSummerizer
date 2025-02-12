@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 export const useDocument =  ()=>{
 
     const [documents,setDocuments] = useState([])
-    const url = 'http://localhost:3003/api/v1/documents'
 
    async function getDocuments(){
         const response = await axios.get('http://localhost:3003/api/v1/documents',{
