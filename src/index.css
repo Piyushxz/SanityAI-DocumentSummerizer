@@ -6,3 +6,17 @@
 @theme{
   --font-primary:"Satoshi","sans-serif";
 }
+
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track{
+  background:#000
+}
+
+::-webkit-scrollbar-thumb{
+  background:#191919;
+  border-radius:4px;
+
+}
