@@ -3,14 +3,21 @@ import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
-import { isContentModalOpen, loggedInUserName } from "../atoms"
+import { activeSidebarOption, isContentModalOpen, loggedInUserName } from "../atoms"
 import PlusIcon from "../components/icons/PlusIcon"
+import { useEffect } from "react"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
     const username = useRecoilValue(loggedInUserName)
+    const setActiveSidebarOption = useSetRecoilState(activeSidebarOption)
+
     console.log(username)
+
+    useEffect(()=>{
+        setActiveSidebarOption({option:"home"})
+    },[])
     return(
         <div className="">
             <Sidebar/>

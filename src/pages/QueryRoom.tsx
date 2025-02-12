@@ -1,9 +1,20 @@
+import { useEffect } from "react";
 import { Navbar } from "../components/DashboardNavbar";
 import { QueryBox } from "../components/QueryBox";
 import { AISearch } from "../components/SearchBar";
 import { Sidebar } from "../components/Sidebar";
 
 export const QueryRoom = () => {
+
+  useEffect(()=>{
+
+  
+    
+
+    // return ()=>{
+    //   setActiveSidebarOption({option:"home"})
+    // }
+  },[])
   return (
     <div>
             <div className="w-screen h-screen flex ">

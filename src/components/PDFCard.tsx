@@ -5,16 +5,15 @@ import ChatIcon from "./icons/ChatIcon"
 import DeleteIcon from "./icons/DeleteIcon"
 import FavoritesIcon from "./icons/FavourtieIcon"
 import { useSetRecoilState } from "recoil"
-import { activeDocumentData, activeDocumentId, isDeleteModalOpen } from "../atoms"
-import { toast } from "sonner"
-import axios from "axios"
+import { activeDocumentData, activeSidebarOption, isDeleteModalOpen } from "../atoms"
+
 export const PDFCard = ({pdfName,documentId}:{
     pdfName:string,
     documentId : string
 }) =>{
 
     const navigate = useNavigate()
-    const setActiveDocumentID = useSetRecoilState(activeDocumentId)
+    const setSideBarOption = useSetRecoilState(activeSidebarOption)
     const setActiveDocData = useSetRecoilState(activeDocumentData)
     const setDelModal = useSetRecoilState(isDeleteModalOpen)
 
@@ -43,8 +42,9 @@ export const PDFCard = ({pdfName,documentId}:{
             </div>
             <div className="flex gap-2 mt-2">
                 <Button text="Chat" onClick={()=>{navigate(`/${documentId}`)
-                setActiveDocumentID(documentId)
-            }} size="lg" variant="secondary" leftIcon={<ChatIcon/>} />
+                        setActiveDocData({documentId:documentId,documentName:pdfName})
+                        setSideBarOption({option:"doc"})
+                    }} size="lg" variant="secondary" leftIcon={<ChatIcon/>} />
             </div>
         </div>
     </div>

@@ -10,6 +10,11 @@ interface Document{
 }
 
 
+interface SidebarOptipon  {
+    option : 'home' | 'fav' |'doc'
+}
+
+
 export const loggedInUserName = atom({
     key:"loggedInUserName",
     default:""
@@ -61,4 +66,10 @@ export const isFileSelected = atom<File | null>({
 export const isDeleteModalOpen = atom<boolean>({
     key:"isDeleteModalOpen",
     default:false
+})
+
+
+export const activeSidebarOption = atom <SidebarOptipon>({
+    key:"activeSidebarOption",
+    default:{option:'home'}
 })

@@ -1,14 +1,18 @@
-import { useRecoilState } from "recoil"
-import { sidebarOpen } from "../atoms"
+import { useRecoilState ,useRecoilValue} from "recoil"
+import { activeDocumentData, sidebarOpen } from "../atoms"
 import { SidebarOpenIcon } from "./icons/SidebarOpenIcon"
 import HomeIcon from "./icons/HomeIcon"
 import { SidebarOption } from "./SidebarOption"
 import FavoritesIcon from "./icons/FavourtieIcon"
 import {motion} from "motion/react"
+import {  useParams } from "react-router-dom"
+import { DoucumentIcon } from "./icons/DocuementIcon"
 export const Sidebar = ()=>{
     const [isSidebarOpen,setIsSidebarOpen] = useRecoilState(sidebarOpen)
-
+    const activeDocData = useRecoilValue(activeDocumentData)
+  const {id} = useParams()
     console.log("sidebar",isSidebarOpen)
+    console.log(location.pathname)
     return(
         <motion.div
         animate={{ baseFrequency: 0.5 }}
@@ -27,8 +31,14 @@ export const Sidebar = ()=>{
 
         <div>
 
-            <SidebarOption text="Home" icon={ <HomeIcon className="text-inherit" />}/>
-            <SidebarOption text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
+            {
+              id && activeDocData.documentName && 
+              <SidebarOption variant="doc" text={activeDocData.documentName} icon={<DoucumentIcon/>}/>
+            }
+            <SidebarOption variant="home" text="Home" icon={ <HomeIcon className="text-inherit" />}/>
+            <SidebarOption variant="fav" text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
+            
+
 
         </div>
         </motion.div>
