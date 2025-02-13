@@ -73,3 +73,9 @@ export const activeSidebarOption = atom <SidebarOptipon>({
     key:"activeSidebarOption",
     default:{option:'home'}
 })
+
+
+export const showIsArchivedDocuments = atom <boolean>({
+    key:"showIsArchivedDocuments",
+    default:false
+})

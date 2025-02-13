@@ -1,5 +1,5 @@
-import { useRecoilState ,useRecoilValue} from "recoil"
-import { activeDocumentData, sidebarOpen } from "../atoms"
+import { useRecoilState ,useRecoilValue, useSetRecoilState} from "recoil"
+import { activeDocumentData, activeSidebarOption, showIsArchivedDocuments, sidebarOpen } from "../atoms"
 import { SidebarOpenIcon } from "./icons/SidebarOpenIcon"
 import HomeIcon from "./icons/HomeIcon"
 import { SidebarOption } from "./SidebarOption"
@@ -10,7 +10,9 @@ import { DoucumentIcon } from "./icons/DocuementIcon"
 export const Sidebar = ()=>{
     const [isSidebarOpen,setIsSidebarOpen] = useRecoilState(sidebarOpen)
     const activeDocData = useRecoilValue(activeDocumentData)
-  const {id} = useParams()
+    const setSidebarOption = useSetRecoilState(activeSidebarOption)
+    const {id} = useParams()
+    const setShowArchivedDocuments = useSetRecoilState(showIsArchivedDocuments)
     console.log("sidebar",isSidebarOpen)
     console.log(location.pathname)
     return(
@@ -33,10 +35,17 @@ export const Sidebar = ()=>{
 
             {
               id && activeDocData.documentName && 
-              <SidebarOption variant="doc" text={activeDocData.documentName} icon={<DoucumentIcon/>}/>
+              <SidebarOption 
+              variant="doc" text={activeDocData.documentName} icon={<DoucumentIcon/>}/>
             }
-            <SidebarOption variant="home" text="Home" icon={ <HomeIcon className="text-inherit" />}/>
-            <SidebarOption variant="fav" text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
+            <SidebarOption onClick={()=>{setSidebarOption({option:'home'})
+              setShowArchivedDocuments(false)
+            }}
+            variant="home" text="Home" icon={ <HomeIcon className="text-inherit" />}/>
+            <SidebarOption onClick={()=>{setShowArchivedDocuments(true)
+              setSidebarOption({option:'fav'})
+            }}
+            variant="fav" text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
             
 
 
