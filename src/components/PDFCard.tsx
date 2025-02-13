@@ -7,9 +7,10 @@ import FavoritesIcon from "./icons/FavourtieIcon"
 import { useSetRecoilState } from "recoil"
 import { activeDocumentData, activeSidebarOption, isDeleteModalOpen } from "../atoms"
 
-export const PDFCard = ({pdfName,documentId}:{
+export const PDFCard = ({pdfName,documentId,isArchived}:{
     pdfName:string,
-    documentId : string
+    documentId : string,
+    isArchived:boolean
 }) =>{
 
     const navigate = useNavigate()
@@ -22,7 +23,7 @@ export const PDFCard = ({pdfName,documentId}:{
         <div className="w-80  border border-gray-200/20 rounded-lg">
             <div className="flex justify-end">
                 <div className="flex gap-2 p-2 absolute">
-                    <FavoritesIcon/>
+                    <FavoritesIcon isArhived={isArchived}/>
                     <div onClick={()=>{setDelModal(true)
                         setActiveDocData({documentId:documentId,documentName:pdfName})
                     }}>

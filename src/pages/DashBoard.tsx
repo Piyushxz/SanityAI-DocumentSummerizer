@@ -39,8 +39,8 @@ export const Dashboard = () =>{
 
                     {
 
-                        documents.map(({documentName,documentId},)=>
-                        <PDFCard key={documentId}  pdfName={documentName} documentId={documentId}/>
+                        documents.map(({documentName,documentId,isArchived},)=>
+                        <PDFCard key={documentId}  pdfName={documentName} documentId={documentId} isArchived={isArchived}/>
                         )
                     }
 
