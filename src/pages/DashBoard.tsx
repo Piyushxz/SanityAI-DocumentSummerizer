@@ -19,6 +19,11 @@ export const Dashboard = () =>{
     useEffect(()=>{
         setActiveSidebarOption({option:"home"})
         setMessages([])
+
+
+        return()=>{
+            localStorage.removeItem("token")
+        }
     },[])
     return(
         <div className="">
