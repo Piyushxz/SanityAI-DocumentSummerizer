@@ -10,11 +10,14 @@ export const useDocument =  ()=>{
     const [documents,setDocuments] = useState([])
     const showArchivedDocuments = useRecoilValue(showIsArchivedDocuments)
 
+    const  [isLoadingDocs,setIsLoadingDocs] = useState(false)
+
     
-    const url = showArchivedDocuments ? `http://localhost:3003/api/v1/favourite` : `http://localhost:3003/api/v1/documents`
+    const url = showArchivedDocuments ? `https://be1.piyushxz.online/api/v1/favourite` : `https://be1.piyushxz.online/api/v1/documents`
 
 
    async function getDocuments(){
+    setIsLoadingDocs(true)
         const response = await axios.get(url,{
             headers:{
                 Authorization:localStorage.getItem("token")
@@ -22,6 +25,7 @@ export const useDocument =  ()=>{
         })
 
         setDocuments(response.data.documents)
+        setIsLoadingDocs(false)
 
     }
     useEffect(()=>
@@ -35,5 +39,5 @@ export const useDocument =  ()=>{
         ,[showArchivedDocuments])
 
     
-    return {documents}
+    return {documents,isLoadingDocs}
 }

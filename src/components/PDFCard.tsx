@@ -26,7 +26,7 @@ export const PDFCard = ({pdfName,documentId,isArchived}:{
             console.log(documentId);
             
             const response = await toast.promise(
-                 axios.post('http://localhost:3003/api/v1/favourite', {
+                 axios.post('https://be1.piyushxz.online/api/v1/favourite', {
                     document: documentId},
                     {
                         headers:{
