@@ -1,10 +1,22 @@
 import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
-import {motion} from "motion/react"
-import { toast } from "sonner"
+import {motion, useMotionValueEvent, useScroll} from "motion/react"
 import Aboutus from "../components/Aboutus"
+import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { useTransform } from "motion/react";
 
 export const Landing = () => {
+  const navigate = useNavigate()
+  const targetRef = useRef<HTMLDivElement>(null)
+  const {scrollYProgress} = useScroll({target:targetRef,
+    offset:["center","end start"],
+    axis:"y"
+  }) 
+
+
+  useMotionValueEvent(scrollYProgress,"change",(latest)=>console.log(latest))
+  const pos = useTransform(scrollYProgress,[0,1],["0px","470px"])
     return (
       <div className="overflow-x-hidden">
         <Navbar />
@@ -29,8 +41,8 @@ export const Landing = () => {
               </span>{" "}
               Using RAG.
             </h1>
-            <h3 className="font-primary tracking-tighter font-bold text-xl md:text-xl mt-4 text-white opacity-80">
-              Summarize long documents with the power of RAG technology, blending advanced retrieval and generation.
+            <h3 className="font-primary tracking-tighter font-bold text-md md:text-xl mt-4 text-white opacity-80">
+              Summarize.Chat.And More
             </h3>
           </motion.div>
           <motion.div
@@ -47,7 +59,7 @@ export const Landing = () => {
             className="mt-6"
           >
             <button
-              onClick={() => toast.success("Welcome!")}
+              onClick={() =>navigate('/login')}
               className="inline-flex font-primary tracking-tighter items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8"
             >
               Start Now
@@ -74,9 +86,44 @@ export const Landing = () => {
             </h1>
           </motion.div>
           <Features />
+
+          <div className="w-full flex justify-center my-[300px] ">
+          
+              <h1 className="font-primary tracking-tighter font-extrabold text-3xl md:text-5xl text-white">Summarize.Chat.And More</h1>
+            
+
+          </div>
+          <div className="w-full flex justify-center my-24 ">
+          
+              <h1 className="font-primary tracking-tighter font-extrabold text-3xl md:text-5xl text-white">How it works</h1>
+            
+
+          </div>
+
+          <div className="w-full flex justify-center items-center  ">
+          
+            
+            <div className="h-[60vh]  md:h-[80vh] bg-[#191919] w-1 rounded-lg">
+             <motion.span
+            ref = {targetRef}
+             style={{y:pos
+
+
+             }}
+            
+            className="h-30  w-1 mb-[500px] absolute rounded-lg bg-gradient-to-b from-blue-400 to-blue-700  rounded-full drop-shadow-xl shadow-[0_0_30px_3px_rgba(0,123,255,0.8)]">
+
+              
+            </motion.span> 
+            </div>
+ 
+
+        </div>
           <div id="about-us">
             <Aboutus />
           </div>
+
+          
         </div>
       </div>
     );

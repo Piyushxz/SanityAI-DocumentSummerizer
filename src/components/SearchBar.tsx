@@ -55,7 +55,7 @@ export const AISearch =()=>{
     }
 
     return(
-    <div className="w-[90vw] md:w-[50vw] min-h-[3rem] md:min-h-[5rem] rounded-2xl bg-[#191919] font-primary border border-gray-500/20 flex flex-col p-2 md:p-4">
+    <div className="w-[90vw] shadow-2xl md:w-[50vw] min-h-[3rem] md:min-h-[5rem] rounded-2xl bg-[#191919] font-primary border border-gray-500/20 flex flex-col p-2 md:p-4">
         <textarea 
             ref={inputRef}
             className="bg-[#191919] text-white w-full font-primary p-2 resize-none flex-grow outline-none 
