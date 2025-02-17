@@ -5,18 +5,53 @@ import Aboutus from "../components/Aboutus"
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { useTransform } from "motion/react";
+import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 
 export const Landing = () => {
   const navigate = useNavigate()
   const targetRef = useRef<HTMLDivElement>(null)
-  const {scrollYProgress} = useScroll({target:targetRef,
-    offset:["center","end start"],
-    axis:"y"
-  }) 
+  const iconRef = useRef<HTMLDivElement>(null)
+  const iconRef2 = useRef<HTMLDivElement>(null)
+
+  const iconRef3 = useRef<HTMLDivElement>(null)
 
 
-  useMotionValueEvent(scrollYProgress,"change",(latest)=>console.log(latest))
-  const pos = useTransform(scrollYProgress,[0,1],["0px","470px"])
+  const { scrollYProgress: sectionScrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["center", "end start"],
+    axis: "y",
+  });
+  
+  const { scrollYProgress: iconScrollYProgress } = useScroll({
+    target: iconRef,
+    offset: ["center", "start center"],
+    axis: "y",
+  });
+  
+  const { scrollYProgress: iconScrollYProgress2 } = useScroll({
+    target: iconRef2,
+    offset: ["center", "end"],
+    axis: "y",
+  });
+  
+  const { scrollYProgress: iconScrollYProgress3 } = useScroll({
+    target: iconRef3,
+    offset: ["center", "end start"],
+    axis: "y",
+  });
+  
+
+
+
+  useMotionValueEvent(sectionScrollYProgress,"change",(latest)=>console.log(latest))
+  const pos = useTransform(sectionScrollYProgress,[0,1],["0px","470px"])
+  const col = useTransform(iconScrollYProgress,[0,1],["#191919","#3B82F6"])
+  const col2 = useTransform(iconScrollYProgress2,[0,1],["#191919","#3B82F6"])
+
+  const col3 = useTransform(iconScrollYProgress3,[0,1],["#191919","#3B82F6"])
+
+
+
     return (
       <div className="overflow-x-hidden">
         <Navbar />
@@ -100,10 +135,10 @@ export const Landing = () => {
 
           </div>
 
-          <div className="w-full flex justify-center items-center  ">
+          <div className="w-full flex justify-center  ">
           
             
-            <div className="h-[60vh]  md:h-[80vh] bg-[#191919] w-1 rounded-lg">
+            <div className="h-[90vh]  md:h-[80vh] bg-[#191919] w-1 rounded-lg">
              <motion.span
             ref = {targetRef}
              style={{y:pos
@@ -115,6 +150,57 @@ export const Landing = () => {
 
               
             </motion.span> 
+
+
+            <div className="">
+            <motion.div
+            ref={iconRef}
+            style={{ color: col }}
+            className="absolute mb-6  -translate-x-38">
+              <SearchFolderIcon className="text-inherit size-28" />
+            </motion.div>
+
+            <div className="w-40 h-24 mt-8 translate-x-4 ">
+              <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">1</span>
+              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Select a PDF you want to chat with.</h1>
+
+            </div>
+
+            </div>
+            <div className="translate-y-20">
+            <motion.div
+            ref={iconRef2}
+            style={{ color: col2 }}
+            className="absolute mb-6  translate-x-8">
+              <SearchFolderIcon className="text-inherit size-28" />
+            </motion.div>
+
+            <div className="w-40 h-24 mt-8 -translate-x-38 ">
+              <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">2</span>
+              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Select a PDF you want to chat with.</h1>
+
+            </div>
+
+            </div>
+            <div className="translate-y-36">
+            <motion.div
+            ref={iconRef3}
+            style={{ color: col3 }}
+            className="absolute mb-6  -translate-x-32">
+              <SearchFolderIcon className="text-inherit size-28" />
+            </motion.div>
+
+            <div className="w-40 h-24 mt-8 translate-x-4 ">
+              <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">3</span>
+              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Select a PDF you want to chat with.</h1>
+
+            </div>
+
+            </div>
+            
             </div>
  
 
