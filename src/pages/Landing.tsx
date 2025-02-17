@@ -71,7 +71,7 @@ export const Landing = () => {
             }}
             className="w-full md:w-1/2 text-center"
           >
-            <h1 className="font-primary tracking-tighter font-extrabold text-4xl md:text-7xl text-white">
+            <h1 className="font-primary tracking-tighter font-extrabold text-5xl md:text-7xl text-white">
               Document{" "}
               <span className="w-fit bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text pr-1.5 text-center text-transparent md:mb-4">
                 Summerizer
@@ -124,7 +124,7 @@ export const Landing = () => {
           </motion.div>
           <Features />
 
-          <div className="w-full flex justify-center my-[300px] ">
+          <div className="w-full flex justify-center my-[400px] ">
           
               <h1 className="font-primary tracking-tighter font-extrabold text-3xl md:text-5xl text-white">Summarize.Chat.And More</h1>
             
@@ -140,7 +140,7 @@ export const Landing = () => {
           <div className="w-full flex justify-center  ">
           
             
-            <div className="h-[80vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
+            <div className="h-[70vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
              <motion.span
             ref = {targetRef}
              style={{y:pos
