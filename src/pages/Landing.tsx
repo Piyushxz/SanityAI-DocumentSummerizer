@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
+import UploadFolderIcon from "../components/icons/UploadFolder";
+import MessagesIcon from "../components/icons/MessagesIcon";
 
 export const Landing = () => {
   const navigate = useNavigate()
@@ -30,7 +32,7 @@ export const Landing = () => {
   
   const { scrollYProgress: iconScrollYProgress2 } = useScroll({
     target: iconRef2,
-    offset: ["center", "end"],
+    offset: ["center", "start"],
     axis: "y",
   });
   
@@ -44,7 +46,7 @@ export const Landing = () => {
 
 
   useMotionValueEvent(sectionScrollYProgress,"change",(latest)=>console.log(latest))
-  const pos = useTransform(sectionScrollYProgress,[0,1],["0px","470px"])
+  const pos = useTransform(sectionScrollYProgress,[0,1],["0px","55vh"])
   const col = useTransform(iconScrollYProgress,[0,1],["#191919","#3B82F6"])
   const col2 = useTransform(iconScrollYProgress2,[0,1],["#191919","#3B82F6"])
 
@@ -138,7 +140,7 @@ export const Landing = () => {
           <div className="w-full flex justify-center  ">
           
             
-            <div className="h-[90vh]  md:h-[80vh] bg-[#191919] w-1 rounded-lg">
+            <div className="h-[80vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
              <motion.span
             ref = {targetRef}
              style={{y:pos
@@ -173,13 +175,13 @@ export const Landing = () => {
             ref={iconRef2}
             style={{ color: col2 }}
             className="absolute mb-6  translate-x-8">
-              <SearchFolderIcon className="text-inherit size-28" />
+              <UploadFolderIcon className="text-inherit size-28" />
             </motion.div>
 
             <div className="w-40 h-24 mt-8 -translate-x-38 ">
               <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">2</span>
-              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
-              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Select a PDF you want to chat with.</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Upload </h1>
+              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Upload your PDF with one click.</h1>
 
             </div>
 
@@ -188,14 +190,14 @@ export const Landing = () => {
             <motion.div
             ref={iconRef3}
             style={{ color: col3 }}
-            className="absolute mb-6  -translate-x-32">
-              <SearchFolderIcon className="text-inherit size-28" />
+            className="absolute mb-6  -translate-x-38">
+              <MessagesIcon className="text-inherit size-28" />
             </motion.div>
 
             <div className="w-40 h-24 mt-8 translate-x-4 ">
               <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">3</span>
-              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
-              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Select a PDF you want to chat with.</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Chat</h1>
+              <h1 className="font-primary tracking-tighter font-normal text-md text-white/50 px-2">Ask any question you want.</h1>
 
             </div>
 
