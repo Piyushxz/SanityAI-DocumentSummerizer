@@ -1,8 +1,8 @@
 import { atom } from "recoil";
 
 interface Message{
-    message:string,
-    sentBy:'user' | 'bot'
+    content:string,
+    sentBy:'User' | 'Bot'
 }
 interface Document{
     documentName:string | null,
@@ -79,3 +79,10 @@ export const showIsArchivedDocuments = atom <boolean>({
     key:"showIsArchivedDocuments",
     default:false
 })
+
+export const isHistoryLoading = atom <boolean>({
+    key:"isHistoryLoading",
+    default:true
+})
+
+

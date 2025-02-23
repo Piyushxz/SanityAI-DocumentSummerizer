@@ -1,7 +1,7 @@
 import {  useRef } from "react"
 import { SearchIcon } from "./icons/SearchIcon";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { activeDocumentId, isAIResultLoading, messages } from "../atoms";
+import { activeDocumentId, isAIResultLoading, isHistoryLoading, messages } from "../atoms";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 export const AISearch =()=>{
@@ -9,6 +9,7 @@ export const AISearch =()=>{
     const setIsLoading = useSetRecoilState(isAIResultLoading)
     const setMessages = useSetRecoilState(messages)  
     const activeDocId = useRecoilValue(activeDocumentId)
+    const isLoadingChatHistory = useRecoilValue(isHistoryLoading)
     console.log(activeDocId)
 
     const params = useParams()
@@ -25,7 +26,7 @@ export const AISearch =()=>{
         }
         const input = inputRef.current.value
         if(!inputRef.current) return
-        setMessages(prev=>[...prev,{message:input,sentBy:'user'}])
+        setMessages(prev=>[...prev,{content:input,sentBy:'User'}])
         try{
 
             setIsLoading(true)
@@ -43,7 +44,7 @@ export const AISearch =()=>{
             
             setIsLoading(false)
             console.log(response)
-            setMessages(prev=>[...prev,{message:response.data.answer,sentBy:'bot'}])
+            setMessages(prev=>[...prev,{content:response.data.answer,sentBy:'Bot'}])
 
 
         }
@@ -53,7 +54,7 @@ export const AISearch =()=>{
         }
 
     }
-
+    if(!isLoadingChatHistory)
     return(
     <div className="w-[90vw] shadow-2xl md:w-[50vw] min-h-[3rem] md:min-h-[5rem] rounded-2xl bg-[#191919] font-primary border border-gray-500/20 flex flex-col p-2 md:p-4">
         <textarea 

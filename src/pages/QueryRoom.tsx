@@ -3,19 +3,33 @@ import { Navbar } from "../components/DashboardNavbar";
 import { QueryBox } from "../components/QueryBox";
 import { AISearch } from "../components/SearchBar";
 import { Sidebar } from "../components/Sidebar";
-import {  useSetRecoilState } from "recoil";
-import { activeSidebarOption } from "../atoms";
+import {  useRecoilState, useSetRecoilState } from "recoil";
+import { activeSidebarOption, messages } from "../atoms";
+import { useParams } from "react-router-dom";
+import { useHistory } from "../hooks/useHistory";
 
 
 export const QueryRoom = () => {
 
   const setActiveSidebarOption = useSetRecoilState(activeSidebarOption)
+    const [allMessages,setAllMessages] = useRecoilState(messages)
+  
+  const params = useParams()
+  const id = params.id
+
+  const {history,loading} = useHistory({roomId:id})
+  console.log("history before settng",history)
   useEffect(()=>{
 
     setActiveSidebarOption({option:"doc"})
 
+    if(!loading){
+      setAllMessages((prev)=>[...prev,...history])
+    }
 
-  },[])
+  },[history])
+  console.log(allMessages, " after")
+
   return (
     <div>
             <div className="w-screen h-screen flex ">

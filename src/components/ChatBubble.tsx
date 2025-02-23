@@ -2,14 +2,14 @@ import { AnimatedAIResult } from "./AnimatedAIResult";
 import { RobotIcon } from "./icons/RobotIcon";
 
 interface ChatBubbleProps {
-    variant: "user" | "bot";
+    variant: "User" | "Bot";
     text: string,
     isActive?:boolean
 
   }
   
   const ChatBubbleStyles = {
-    user: " bg-[#191919] text-white",
+    User: " bg-[#191919] text-white",
     sender: " bg-[#191919] text-white ",
   };
 
@@ -19,12 +19,12 @@ interface ChatBubbleProps {
     return (
       <div
         className={`flex flex-col py-1 ${
-          props.variant === "user" ? "self-end" : "self-start"
+          props.variant === "User" ? "self-end" : "self-start"
         } max-w-[600px] w-fit`}
       >
 
         {
-            props.variant === 'user' ? 
+            props.variant === 'User' ? 
             <div
             className={`${
               ChatBubbleStyles[props.variant]

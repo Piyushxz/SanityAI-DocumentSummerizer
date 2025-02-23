@@ -60,46 +60,11 @@ const Login: React.FC = () => {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-blue-900">
+    <div className="h-screen w-full flex justify-center bg-gradient-to-b from-black to-blue-900">
       
-      <div className="flex items-center flex-col justify-center min-h-screen py-6 px-4">
-        <div className="grid md:grid-cols-2 items-center gap-10 max-w-6xl max-md:max-w-md w-full">
-          <div className='font-primary'>
-            <motion.h2
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8, ease: "easeInOut" }}
-              className="lg:text-5xl text-3xl font-extrabold lg:leading-[55px] text-white"
-            >
-              Seamless Login for Exclusive Access
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
-              className="text-sm mt-6 text-gray-300"
-            >
-              Immerse yourself in a hassle-free login journey with our intuitively designed login form. Effortlessly access your account.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
-              className="text-sm mt-6 text-gray-300"
-            >
-              Our AI-powered Document Summarizer helps you quickly and accurately summarize your documents.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8, duration: 0.8, ease: "easeInOut" }}
-              className="text-sm mt-12 text-gray-300"
-            >
-              Don't have an account? <a href="javascript:void(0);" className="text-blue-400 font-semibold hover:underline ml-1" onClick={() => navigate('/signup')}>Register here</a>
-            </motion.p>
-          </div>
+      <div className="flex flex-col gap-2 justify-center w-96">
 
-          <motion.form
+      <motion.form
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{
@@ -109,7 +74,7 @@ const Login: React.FC = () => {
 
             }}
             onSubmit={handleSubmit}
-            className="max-w-md md:ml-auto w-full bg-black bg-opacity-70 p-8 rounded-lg shadow-lg"
+            className="max-w-md md:ml-auto w-full bg-black/40 p-8 rounded-2xl mx-4 shadow-lg"
           >
             <h3 className="text-white font-primary text-3xl font-extrabold mb-8">
               Login
@@ -125,7 +90,7 @@ const Login: React.FC = () => {
                   required
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-gray-800 font-primary w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="username"
                 />
               </div>
@@ -137,7 +102,7 @@ const Login: React.FC = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="bg-gray-800 w-full text-sm text-white px-4 py-3.5 rounded-md outline-none focus:ring-2 focus:ring-blue-500"
+                  className="bg-gray-800 font-primary w-full text-sm text-white px-4 py-3.5 rounded-md o focus:ring-2 focus:ring-blue-500"
                   placeholder="Password"
                 />
               </div>
@@ -184,8 +149,16 @@ const Login: React.FC = () => {
                 </svg>
               </button>
             </div>
+
           </motion.form>
-        </div>
+          <motion.p
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8, duration: 0.8, ease: "easeInOut" }}
+              className="text-sm text-gray-300 flex justify-center"
+            >
+              Don't have an account? <a href="javascript:void(0);" className="text-blue-400 font-semibold hover:underline " onClick={() => navigate('/signup')}>Register here</a>
+            </motion.p>
       </div>
     </div>
   );
