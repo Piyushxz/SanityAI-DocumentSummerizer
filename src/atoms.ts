@@ -1,8 +1,9 @@
 import { atom } from "recoil";
 
-interface Message{
+export interface Message{
     content:string,
-    sentBy:'User' | 'Bot'
+    sentBy:'User' | 'Bot',
+    isHistory?:boolean
 }
 interface Document{
     documentName:string | null,

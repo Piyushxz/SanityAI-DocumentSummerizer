@@ -5,16 +5,17 @@ import HomeIcon from "./icons/HomeIcon"
 import { SidebarOption } from "./SidebarOption"
 import FavoritesIcon from "./icons/FavourtieIcon"
 import {motion} from "motion/react"
-import {  useParams } from "react-router-dom"
+import {  useLocation, useNavigate, useParams } from "react-router-dom"
 import { DoucumentIcon } from "./icons/DocuementIcon"
 export const Sidebar = ()=>{
     const [isSidebarOpen,setIsSidebarOpen] = useRecoilState(sidebarOpen)
     const activeDocData = useRecoilValue(activeDocumentData)
     const setSidebarOption = useSetRecoilState(activeSidebarOption)
     const {id} = useParams()
+    const location = useLocation()
+    const navigate = useNavigate()
     const setShowArchivedDocuments = useSetRecoilState(showIsArchivedDocuments)
-    console.log("sidebar",isSidebarOpen)
-    console.log(location.pathname)
+
     return(
         <motion.div
         animate={{ baseFrequency: 0.5 }}
@@ -40,10 +41,22 @@ export const Sidebar = ()=>{
             }
             <SidebarOption onClick={()=>{setSidebarOption({option:'home'})
               setShowArchivedDocuments(false)
+              if(location.pathname !== 'dashboard'){
+                navigate('/dashboard')
+              }
             }}
             variant="home" text="Home" icon={ <HomeIcon className="text-inherit" />}/>
-            <SidebarOption onClick={()=>{setShowArchivedDocuments(true)
+            <SidebarOption onClick={()=>{
+
+              if(location.pathname !== 'dashboard'){
+                navigate('/dashboard')
+                setSidebarOption({option:'fav'})
+
+
+              }
+              setShowArchivedDocuments(true)
               setSidebarOption({option:'fav'})
+
             }}
             variant="fav" text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
             

@@ -44,7 +44,7 @@ export const QueryBox = () => {
                   <ChatBubble text="hey" variant="Bot" />
     
             {
-                allMessages.map(({content,sentBy})=><ChatBubble text={content} variant={sentBy} isActive/>)
+                allMessages.map(({content,sentBy,isHistory})=><ChatBubble text={content} variant={sentBy} isActive={!isHistory}/>)
             }
             {
                 isLoading &&

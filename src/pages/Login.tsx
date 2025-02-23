@@ -74,7 +74,7 @@ const Login: React.FC = () => {
 
             }}
             onSubmit={handleSubmit}
-            className="max-w-md md:ml-auto w-full bg-black/40 p-8 rounded-2xl mx-4 shadow-lg"
+            className=" w-full bg-black/40 p-8 rounded-2xl mr-4 shadow-lg"
           >
             <h3 className="text-white font-primary text-3xl font-extrabold mb-8">
               Login

@@ -4,7 +4,7 @@ import { QueryBox } from "../components/QueryBox";
 import { AISearch } from "../components/SearchBar";
 import { Sidebar } from "../components/Sidebar";
 import {  useRecoilState, useSetRecoilState } from "recoil";
-import { activeSidebarOption, messages } from "../atoms";
+import { activeSidebarOption, Message, messages } from "../atoms";
 import { useParams } from "react-router-dom";
 import { useHistory } from "../hooks/useHistory";
 
@@ -17,15 +17,19 @@ export const QueryRoom = () => {
   const params = useParams()
   const id = params.id
 
-  const {history,loading} = useHistory({roomId:id})
+  const {history} = useHistory({roomId:id}) as {history:Message[]}
+  const {loading} = useHistory({roomId:id})
+
   console.log("history before settng",history)
   useEffect(()=>{
 
     setActiveSidebarOption({option:"doc"})
 
     if(!loading){
-      setAllMessages((prev)=>[...prev,...history])
+      setAllMessages(history.map((msg) => ({ ...msg, isHistory: true }))); 
     }
+
+    
 
   },[history])
   console.log(allMessages, " after")
