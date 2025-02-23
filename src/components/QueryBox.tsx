@@ -36,7 +36,7 @@ export const QueryBox = () => {
 
       return (
 
-        <div className="flex flex-col gap-2 p-2 w-full translate-y-14 md:translate-y-0 ">
+        <div className="flex flex-col gap-2 p-2 w-full ">
 
           { 
           !isLoadingChatHistory? (

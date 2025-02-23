@@ -34,7 +34,7 @@ export const Dashboard = () =>{
                             Welcome , {username}!
                         </h3>
                     </div>
-                <div className="mt-6  flex flex-wrap gap-4">
+                <div className="mt-6  relative flex flex-wrap gap-4">
                     <div onClick={()=>setContentOpenStatus(val=>!val)}
                     className="cursor-pointer w-80 h-62 border-2 border-gray-300/30 border-dashed rounded-lg flex justify-center items-center">
                         <PlusIcon size={30}/>
