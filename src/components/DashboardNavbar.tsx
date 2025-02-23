@@ -22,7 +22,7 @@ export const Navbar = () => {
        initial={{ opacity: 0, y: -20 }}
        animate={{ opacity: 1, y: 0 }}
        transition={{ delay: 0.2, ease: "easeInOut" }}
-       className="p-2 z-50 fixed md:relative border-b md:border-gray-400/30  ">
+       className="p-2 z-50 fixed md:relative border-b border-gray-400/10 md:border-gray-400/30  ">
         <SidebarCloseIcon onClick={() => setIsSidebarOpen((val) => !val)} />
       </motion.div>
 
