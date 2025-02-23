@@ -1,11 +1,14 @@
 
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 
 
 export const Navbar = () => {
   const navigate = useNavigate();
+
+
+
 
   return (
     <>

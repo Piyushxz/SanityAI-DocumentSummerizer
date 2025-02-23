@@ -55,7 +55,6 @@ export const Sidebar = ()=>{
 
               }
               setShowArchivedDocuments(true)
-              setSidebarOption({option:'fav'})
 
             }}
             variant="fav" text="Favourite" icon={ <FavoritesIcon className="text-inherit" />}/>
