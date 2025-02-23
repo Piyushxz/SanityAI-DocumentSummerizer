@@ -18,9 +18,13 @@ export const Navbar = () => {
     <>
 
       <div className="flex item z-100">
-      <div className="p-2 z-50 fixed md:relative border-b border-gray-400/30  ">
+      <motion.div
+       initial={{ opacity: 0, y: -20 }}
+       animate={{ opacity: 1, y: 0 }}
+       transition={{ delay: 0.2, ease: "easeInOut" }}
+       className="p-2 z-50 fixed md:relative border-b md:border-gray-400/30  ">
         <SidebarCloseIcon onClick={() => setIsSidebarOpen((val) => !val)} />
-      </div>
+      </motion.div>
 
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -34,7 +38,7 @@ export const Navbar = () => {
           </h1>
 
 
-        <DropdownMenu>
+        <DropdownMenu >
         <DropdownMenuTrigger className="focus:outline-none">
         <div className="flex size-10 cursor-pointer items-center justify-center rounded-full bg-gradient-to-b from-blue-400 to-blue-700">
             <svg
@@ -54,7 +58,7 @@ export const Navbar = () => {
             </svg>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="bg-[#191919] border-gray-600/40">
+        <DropdownMenuContent className="bg-[#191919] border-gray-600/40 z-100">
         <DropdownMenuItem onClick={()=>{navigate('/dashboard')
                             if(location.pathname !=='dashboard'){
                                 navigate('/dashboard')
