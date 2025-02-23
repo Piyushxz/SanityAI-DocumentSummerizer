@@ -17,8 +17,7 @@ export const QueryRoom = () => {
   const params = useParams()
   const id = params.id
 
-  const {history} = useHistory({roomId:id}) as {history:Message[]}
-  const {loading} = useHistory({roomId:id})
+  const { history, loading } = useHistory({ roomId: id }) as { history: Message[]; loading: boolean };
 
   console.log("history before settng",history)
   useEffect(()=>{
@@ -27,12 +26,15 @@ export const QueryRoom = () => {
 
     if(!loading){
       setAllMessages(history.map((msg) => ({ ...msg, isHistory: true }))); 
+      console.log(allMessages, " after")
+
     }
 
-    
+    return()=>{
+      setAllMessages([])
+    }
 
   },[history])
-  console.log(allMessages, " after")
 
   return (
     <div>
@@ -41,7 +43,7 @@ export const QueryRoom = () => {
         <Navbar />
         <div className="flex flex-col flex-grow justify-between items-center overflow-hidden">
           <div className="h-full w-screen justify-center overflow-y-auto flex">
-          <div className="lg:w-[50vw] w-[90vw] h-full  flex mt-14 md:mt-0 ">
+          <div className="lg:w-[50vw] w-[90vw] h-full  flex pt-18 md:pt-0 ">
             <QueryBox/>
           </div>
           </div>

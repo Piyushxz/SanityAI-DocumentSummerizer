@@ -16,7 +16,7 @@ export const QueryBox = () => {
   
 
 
-  console.log("all messages",allMessages)
+  console.log("all messages query box",allMessages)
 
     useEffect(()=>{
 

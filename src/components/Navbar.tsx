@@ -16,7 +16,7 @@ export const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, ease: "easeInOut" }}
-        className="w-[100vw] flex justify-center border-b border-gray-400/50"
+        className="w-[100vw] flex justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
       >
         <div className="w-[100vw] md:w-[80vw] flex justify-between p-4">
           <h1

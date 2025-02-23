@@ -55,7 +55,7 @@ export const Landing = () => {
 
 
     return (
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden  ">
         <Navbar />
         <div className="flex flex-col items-center justify-center mt-24">
           <motion.div
@@ -95,12 +95,13 @@ export const Landing = () => {
             }}
             className="mt-6"
           >
-            <button
-              onClick={() =>navigate('/login')}
-              className="inline-flex font-primary tracking-tighter items-center justify-center whitespace-nowrap text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8"
-            >
-              Start Now
-            </button>
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        onClick={() => navigate('/login')}
+        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8"
+      >
+        Start Now
+      </motion.button>
           </motion.div>
         </div>
   

@@ -3,24 +3,22 @@ import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
-import {  isContentModalOpen, loggedInUserName, messages } from "../atoms"
+import {  isContentModalOpen, loggedInUserName } from "../atoms"
 import PlusIcon from "../components/icons/PlusIcon"
 import { useEffect } from "react"
 
 export const Dashboard = () =>{
     const {documents} = useDocument()
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
-    const setMessages = useSetRecoilState(messages)
     const username = useRecoilValue(loggedInUserName)
 
     console.log(username)
 
     useEffect(()=>{
-        setMessages([])
 
 
         return()=>{
-          
+           
         }
     },[])
     return(
