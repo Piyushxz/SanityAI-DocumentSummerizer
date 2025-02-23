@@ -18,7 +18,7 @@ export const Navbar = () => {
     <>
 
       <div className="flex item z-100">
-      <div className="p-3 z-50 fixed md:relative   ">
+      <div className="p-2 z-50 fixed md:relative border-b border-gray-400/30  ">
         <SidebarCloseIcon onClick={() => setIsSidebarOpen((val) => !val)} />
       </div>
 
@@ -28,7 +28,7 @@ export const Navbar = () => {
         transition={{ delay: 0.2, ease: "easeInOut" }}
         className="w-full fixed md:relative flex justify-center items-center border-b border-gray-400/30 bg-black py-3"
       >
-        <div className="w-[70%] max-w-[1200px] flex justify-between items-center">
+        <div className="w-[70vw] md:w-[80vw] flex justify-between items-center">
           <h1 className="font-primary font-extrabold text-3xl tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent">
             sanityAI
           </h1>

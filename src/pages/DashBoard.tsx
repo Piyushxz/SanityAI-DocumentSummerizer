@@ -28,7 +28,7 @@ export const Dashboard = () =>{
             <Sidebar/>
             <Navbar/>
             <div className="flex  justify-center">
-                <div className="lg:w-[70vw] w-[80vw]  text-white">
+                <div className="lg:w-[70vw] w-[80vw]  text-white translate-y-14 md:translate-y-0">
                     <div className="flex mt-6">
                         <h3 className="text-wrap text-3xl font-extrabold  font-primary tracking-tighter md:text-4xl">
                             Welcome , {username}!
