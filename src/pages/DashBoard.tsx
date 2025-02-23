@@ -3,7 +3,7 @@ import { Navbar } from "../components/DashboardNavbar"
 import { PDFCard } from "../components/PDFCard"
 import { Sidebar } from "../components/Sidebar"
 import { useDocument } from "../hooks/useDocuments"
-import { activeSidebarOption, isContentModalOpen, loggedInUserName, messages } from "../atoms"
+import {  isContentModalOpen, loggedInUserName, messages } from "../atoms"
 import PlusIcon from "../components/icons/PlusIcon"
 import { useEffect } from "react"
 
@@ -12,12 +12,10 @@ export const Dashboard = () =>{
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
     const setMessages = useSetRecoilState(messages)
     const username = useRecoilValue(loggedInUserName)
-    const setActiveSidebarOption = useSetRecoilState(activeSidebarOption)
 
     console.log(username)
 
     useEffect(()=>{
-        setActiveSidebarOption({option:"home"})
         setMessages([])
 
 

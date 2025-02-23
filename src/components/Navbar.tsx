@@ -18,7 +18,7 @@ export const Navbar = () => {
         transition={{ delay: 0.2, ease: "easeInOut" }}
         className="w-[100vw] flex justify-center border-b border-gray-400/50"
       >
-        <div className="w-[90vw] md:w-[80vw] flex justify-between p-4">
+        <div className="w-[100vw] md:w-[80vw] flex justify-between p-4">
           <h1
             className="font-primary font-extrabold text-[#FDFEFF] text-3xl text-primary tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
             onClick={() => navigate('/')}
