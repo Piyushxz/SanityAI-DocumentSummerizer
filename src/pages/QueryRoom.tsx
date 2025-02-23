@@ -41,12 +41,12 @@ export const QueryRoom = () => {
         <Navbar />
         <div className="flex flex-col flex-grow justify-between items-center overflow-hidden">
           <div className="h-full w-screen justify-center overflow-y-auto flex">
-          <div className="lg:w-[50vw] w-[80vw] h-full  flex translate-y-18  md:translate-y-0  ">
+          <div className="lg:w-[50vw] w-[80vw] h-full  flex mt-14 md:mt-0 ">
             <QueryBox/>
           </div>
           </div>
 
-          <div className="mb-6">
+          <div className="mb-6 ">
             <AISearch />
           </div>
         </div>
