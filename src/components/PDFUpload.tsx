@@ -38,7 +38,7 @@ const PDFUpload = () => {
               <span className="font-semibold">Click to upload</span> or drag and drop
             </p>
             <p className="text-xs text-gray-500 dark:text-gray-400">
-              PDF only (MAX. 800x400px)
+              PDF only (Limit is 4mb for now)
             </p>
           </div>
           <input onChange={handleDocumentInput}

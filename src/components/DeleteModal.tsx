@@ -10,8 +10,9 @@ export const DeleteModal = ()=>{
     const {documentId,documentName}= useRecoilValue(activeDocumentData)
     const setIsDelModalOpen = useSetRecoilState(isDeleteModalOpen)
     const handleDocumentDelete = async () => {
-        console.log(documentId); 
         try {
+
+            setIsDelModalOpen(false)
             const response = await toast.promise(
                 axios.delete(`https://be1.piyushxz.online/api/v1/documents`, {
                     headers: {
@@ -20,6 +21,7 @@ export const DeleteModal = ()=>{
                         "Content-Type": "application/json",
                     },
                     data: { documentId },
+                    
                 }),
                 {
                     loading: "Deleting...",
@@ -28,6 +30,7 @@ export const DeleteModal = ()=>{
                 }
             );
             console.log(response); 
+  
         } catch (e) {
             console.log(e); 
         }

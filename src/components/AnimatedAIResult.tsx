@@ -1,7 +1,6 @@
 import {motion} from "motion/react"
 export const AnimatedAIResult = ({ result = "" }: { result?: string }) => {
     const array = result.split(" "); 
-    console.log(array);
 
     return (
         <p>

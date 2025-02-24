@@ -23,7 +23,6 @@ export const useDocument =  ()=>{
                 Authorization:localStorage.getItem("token")
             }
         })
-        console.log(response)
         setDocuments(response.data.documents)
         setIsLoadingDocs(false)
 

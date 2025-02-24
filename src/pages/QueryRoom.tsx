@@ -19,14 +19,12 @@ export const QueryRoom = () => {
 
   const { history, loading } = useHistory({ roomId: id }) as { history: Message[]; loading: boolean };
 
-  console.log("history before settng",history)
   useEffect(()=>{
 
     setActiveSidebarOption({option:"doc"})
 
     if(!loading){
       setAllMessages(history.map((msg) => ({ ...msg, isHistory: true }))); 
-      console.log(allMessages, " after")
 
     }
 

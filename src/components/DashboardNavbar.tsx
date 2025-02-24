@@ -17,7 +17,7 @@ export const Navbar = () => {
   return (
     <>
 
-      <div className="flex item z-100">
+      <div className="flex item z-50">
       <motion.div
        initial={{ opacity: 0, y: -20 }}
        animate={{ opacity: 1, y: 0 }}
@@ -30,7 +30,7 @@ export const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, ease: "easeInOut" }}
-        className="w-full fixed md:relative flex justify-center items-center border-b border-gray-400/30 bg-black py-3"
+        className="w-full fixed md:relative flex justify-center items-center border-b border-gray-400/30 z-49 bg-black py-3"
       >
         <div className="w-[70vw] md:w-[80vw] flex justify-between items-center">
           <h1 className="font-primary font-extrabold text-3xl tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent">

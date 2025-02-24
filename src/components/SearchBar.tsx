@@ -1,22 +1,19 @@
 import {  useRef } from "react"
 import { SearchIcon } from "./icons/SearchIcon";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { activeDocumentId, isAIResultLoading, isHistoryLoading, messages } from "../atoms";
+import {  isAIResultLoading, isHistoryLoading, messages } from "../atoms";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 export const AISearch =()=>{
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
     const setIsLoading = useSetRecoilState(isAIResultLoading)
     const setMessages = useSetRecoilState(messages)  
-    const activeDocId = useRecoilValue(activeDocumentId)
     const isLoadingChatHistory = useRecoilValue(isHistoryLoading)
-    console.log(activeDocId)
 
     const params = useParams()
     console.log(params.id,"params")
     const handleInputQuery= async ()=>{
 
-        console.log(activeDocId)
         if(!inputRef.current?.value ){
             return
         }
@@ -43,7 +40,6 @@ export const AISearch =()=>{
             )
             
             setIsLoading(false)
-            console.log(response)
             setMessages(prev=>[...prev,{content:response.data.answer,sentBy:'Bot'}])
 
 

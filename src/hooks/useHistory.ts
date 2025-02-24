@@ -26,7 +26,6 @@ export const useHistory =  ({roomId}:{
                 setHistory(response.data.messages)
                 setLoading(false)
                 setIsHistoryLoading(false)
-                console.log(response)
             }
             catch(e){
                 console.log(e)

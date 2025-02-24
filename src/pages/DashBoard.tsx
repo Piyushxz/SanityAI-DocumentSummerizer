@@ -12,7 +12,6 @@ export const Dashboard = () =>{
     const setContentOpenStatus = useSetRecoilState(isContentModalOpen)
     const username = useRecoilValue(loggedInUserName)
 
-    console.log(username)
 
     useEffect(()=>{
 
