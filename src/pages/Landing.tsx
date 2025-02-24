@@ -8,6 +8,7 @@ import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
+import { VideoIcon } from "lucide-react";
 
 export const Landing = () => {
   const navigate = useNavigate()
@@ -93,15 +94,26 @@ export const Landing = () => {
               bounce: 0.65,
               visualDuration: 0.5,
             }}
-            className="mt-6"
+            className="mt-6 flex gap-4"
           >
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={() => navigate('/login')}
-        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-8"
+        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-10"
       >
         Start Now
       </motion.button>
+      <motion.button
+    
+        whileTap={{ scale: 0.95 }}
+        onClick={() => window.open('https://youtu.be/47pB5RoGcyo')}
+
+        className="inline-flex font-primary flex gap-2 tracking-tighter items-center justify-center bg-white  to-blue-700 text-black font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-10"
+      >
+        <VideoIcon/>
+        Watch Video
+      </motion.button>
+
           </motion.div>
         </div>
   

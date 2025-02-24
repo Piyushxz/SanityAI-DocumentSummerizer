@@ -18,7 +18,6 @@ export const Navbar = () => {
         className="w-full flex flex-col justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
       >
         <div className="w-full md:w-[80vw] flex justify-between p-3 mx-auto">
-          {/* Logo */}
           <h1
             className="font-primary font-extrabold text-[#FDFEFF] text-3xl tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
             onClick={() => navigate("/")}
@@ -26,7 +25,6 @@ export const Navbar = () => {
             sanityAI
           </h1>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-4">
             <Link
               to="about-us"
@@ -44,18 +42,16 @@ export const Navbar = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen((val) => !val)}
-              className="text-white flex items-center rounded-lg p-3 text-center transition-all duration-300 hover:bg-blue-600/20 hover:text-blue-500"
+              className="text-white flex items-center rounded-lg text-center transition-all duration-300 hover:bg-blue-600/20 hover:text-blue-500"
             >
               {isMenuOpen ? <PanelTopClose /> : <PanelTopOpen />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu (Restored to Your Original Structure) */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -63,7 +59,7 @@ export const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2, ease: "circInOut" }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
               className="flex gap-2 pb-3 mx-2 md:hidden"
             >
               <Link
