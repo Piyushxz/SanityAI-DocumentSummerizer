@@ -1,18 +1,13 @@
-
 import { motion } from "framer-motion";
 import { PanelTopClose, PanelTopOpen } from "lucide-react";
 import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
-
 
 export const Navbar = () => {
   const navigate = useNavigate();
-  const [isMenuOpen,setIsMenuOpen] = useState(false)
-
-
-
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
@@ -20,45 +15,47 @@ export const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, ease: "easeInOut" }}
-        className="w-[100vw] flex flex-col justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
+        className="w-full flex flex-col justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
       >
-        <div className="w-[100vw] md:w-[80vw] flex justify-between p-3">
+        <div className="w-full md:w-[80vw] flex justify-between p-3 mx-auto">
+          {/* Logo */}
           <h1
-            className="font-primary font-extrabold text-[#FDFEFF] text-3xl text-primary tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
-            onClick={() => navigate('/')}
+            className="font-primary font-extrabold text-[#FDFEFF] text-3xl tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
+            onClick={() => navigate("/")}
           >
             sanityAI
           </h1>
-          <div className="md:flex hidden flex space-x-4">
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-4">
             <Link
               to="about-us"
               smooth={true}
               duration={500}
-              className="cursor-pointer font-primary rounded-lg border border-gray-600/50 tracking-tighter transition-all duration-300 ease-in-out  text-white hover:text-blue-500 font-medium text-xs lg:text-sm px-4 py-2"
+              className="cursor-pointer font-primary rounded-lg border border-gray-600/50 tracking-tighter transition-all duration-300 ease-in-out text-white hover:text-blue-500 font-medium text-sm px-4 py-2"
             >
               About Us
             </Link>
             <button
-              className="text-white font-primary tracking-tighter transition-all duration-300 ease-in-out bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-xs lg:text-sm px-4 py-2"
-              onClick={() => navigate('/login')}
+              className="text-white font-primary tracking-tighter transition-all duration-300 ease-in-out bg-blue-500 hover:bg-blue-700 font-medium rounded-lg text-sm px-4 py-2"
+              onClick={() => navigate("/login")}
             >
               Login
             </button>
           </div>
 
-          <div className=" flex md:hidden ">
-            <button onClick={()=>setIsMenuOpen(val=>!val)} className="text-white flex items-center rounded-lg p-3 text-center transition-all duration-300 hover:bg-blue-600/20 hover:text-blue-500">
-             {
-             
-             isMenuOpen ?
-            <PanelTopClose/>
-             :
-             <PanelTopOpen/>}
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsMenuOpen((val) => !val)}
+              className="text-white flex items-center rounded-lg p-3 text-center transition-all duration-300 hover:bg-blue-600/20 hover:text-blue-500"
+            >
+              {isMenuOpen ? <PanelTopClose /> : <PanelTopOpen />}
             </button>
           </div>
-
-
         </div>
+
+        {/* Mobile Menu (Restored to Your Original Structure) */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -67,7 +64,7 @@ export const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2, ease: "circInOut" }}
-              className="flex gap-2 pb-3 mx-2"
+              className="flex gap-2 pb-3 mx-2 md:hidden"
             >
               <Link
                 to="about-us"
@@ -86,7 +83,6 @@ export const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-    
       </motion.div>
     </>
   );
