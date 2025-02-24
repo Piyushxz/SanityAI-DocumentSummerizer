@@ -1,11 +1,15 @@
 
 import { motion } from "framer-motion";
+import { PanelTopClose, PanelTopOpen } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { Link } from "react-scroll";
 
 
 export const Navbar = () => {
   const navigate = useNavigate();
+  const [isMenuOpen,setIsMenuOpen] = useState(false)
 
 
 
@@ -16,16 +20,16 @@ export const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, ease: "easeInOut" }}
-        className="w-[100vw] flex justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
+        className="w-[100vw] flex flex-col justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
       >
-        <div className="w-[100vw] md:w-[80vw] flex justify-between p-4">
+        <div className="w-[100vw] md:w-[80vw] flex justify-between p-3">
           <h1
             className="font-primary font-extrabold text-[#FDFEFF] text-3xl text-primary tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
             onClick={() => navigate('/')}
           >
             sanityAI
           </h1>
-          <div className="flex space-x-4">
+          <div className="md:flex hidden flex space-x-4">
             <Link
               to="about-us"
               smooth={true}
@@ -41,7 +45,48 @@ export const Navbar = () => {
               Login
             </button>
           </div>
+
+          <div className=" flex md:hidden ">
+            <button onClick={()=>setIsMenuOpen(val=>!val)} className="text-white flex items-center rounded-lg p-3 text-center transition-all duration-300 hover:bg-blue-600/20 hover:text-blue-500">
+             {
+             
+             isMenuOpen ?
+            <PanelTopClose/>
+             :
+             <PanelTopOpen/>}
+            </button>
+          </div>
+
+
         </div>
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              key="mobile-menu"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.2, ease: "circInOut" }}
+              className="flex gap-2 pb-3 mx-2"
+            >
+              <Link
+                to="about-us"
+                smooth={true}
+                duration={500}
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-normal ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-white font-primary font-medium text-black dark:text-neutral-950 hover:bg-white/90 h-10 px-4 py-2 tracking-tighter"
+              >
+                About Us
+              </Link>
+              <button
+                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium font-primary hover:opacity-80 transition-all duration-300 h-10 px-4 py-2 w-full tracking-tighter"
+                onClick={() => navigate("/login")}
+              >
+                Login
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+    
       </motion.div>
     </>
   );
