@@ -4,6 +4,8 @@ import { AnimatePresence } from 'framer-motion';
 const Aboutus: React.FC = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
+  const [test,t] = useState(false)
+
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
   };
@@ -17,6 +19,7 @@ const Aboutus: React.FC = () => {
               <h1 className="font-primary tracking-tighter font-extrabold text-4xl md:text-6xl text-white mb-6">
                 About Us
               </h1>
+              <AnimatePresence>
               <div className="space-y-4">
                 {/* Accordion Item 1 */}
                 <div className=" rounded-lg shadow-md">
@@ -32,10 +35,9 @@ const Aboutus: React.FC = () => {
                       </span>
                     </button>
                   </h2>
-                  <AnimatePresence  >
                   {openAccordion === 1 && (
                     <motion.div 
-                    key="content"
+                    key={openAccordion}
                     initial={{height:0,}}
                     exit={{ height: 0 }}
                     animate={{ height: "100px" }}
@@ -46,7 +48,6 @@ const Aboutus: React.FC = () => {
                       </p>
                     </motion.div>
                   )}
-                  </AnimatePresence>
                 </div>
 
                 {/* Accordion Item 2 */}
@@ -90,14 +91,13 @@ const Aboutus: React.FC = () => {
                       </span>
                     </button>
                   </h2>
-                  <AnimatePresence>
                   {openAccordion === 3 && (
                     <motion.div
                     initial={{height:0}}
                     exit={{ height: 0 }}
 
                     animate={{ height: "100px" }}
-                    transition={{ type: "spring", stiffness: 200,bounce:0.25, mass: 0.5}}
+                    transition={{ type: "spring", stiffness: 200,bounce:0.1, damping:15}}
                     className={`p-4 bg-[#191919] border-t border-white/20 rounded-b-lg transition-[max-height] duration-300 ease-in-out overflow-hidden ${
                       openAccordion === 3 ? "max-h-96" : "max-h-0"
                     }`}
@@ -108,9 +108,11 @@ const Aboutus: React.FC = () => {
                   </motion.div>
 
                   )}
-                  </AnimatePresence>
                 </div>
               </div>
+        
+
+              </AnimatePresence>
 
               {/* Suggestions Section */}
               <div className="mt-6">
@@ -144,11 +146,7 @@ const Aboutus: React.FC = () => {
         </div>
       </div>
       {/* Footer */}
-      <footer className="bg-black text-white py-4 mt-10 border-t border-gray-600/50">
-        <div className="container mx-auto text-center">
-          <p>&copy; 2025 Document Summarizer. All rights reserved.</p>
-        </div>
-      </footer>
+        
 
     </>
   );

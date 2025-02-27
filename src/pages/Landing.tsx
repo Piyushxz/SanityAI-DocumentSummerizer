@@ -9,6 +9,7 @@ import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
 import { VideoIcon } from "lucide-react";
+import { Footer } from "@/components/Footer";
 
 export const Landing = () => {
   const navigate = useNavigate()
@@ -226,6 +227,7 @@ export const Landing = () => {
 
           
         </div>
+        <Footer/>
       </div>
     );
   };
