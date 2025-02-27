@@ -69,7 +69,7 @@ export const Landing = () => {
               ease: "easeInOut",
               type: "spring",
               bounce: 0.65,
-              visualDuration: 0.5,
+              stiffness:200,
             }}
             className="w-full md:w-1/2 text-center"
           >
@@ -118,14 +118,13 @@ export const Landing = () => {
           </motion.div>
         </div>
   
-        <div className="mt-24">
+        <div className="mt-[150px]">
           <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 20 }}
+            initial={{ opacity: 0, y: 0}}
+            animate={{ opacity: 1, y: -20}}
             transition={{
               duration: 0.3,
               delay: 0.9,
-              ease: "easeInOut",
               type: "spring",
               bounce: 0.65,
               visualDuration: 0.5,

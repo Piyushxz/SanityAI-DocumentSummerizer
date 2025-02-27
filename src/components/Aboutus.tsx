@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 const Aboutus: React.FC = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
-  const [test,t] = useState(false)
 
   const toggleAccordion = (index: number) => {
     setOpenAccordion(openAccordion === index ? null : index);
