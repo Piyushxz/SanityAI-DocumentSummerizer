@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-
+import {motion} from "motion/react"
+import { AnimatePresence } from 'framer-motion';
 const Aboutus: React.FC = () => {
   const [openAccordion, setOpenAccordion] = useState<number | null>(null);
 
@@ -31,13 +32,21 @@ const Aboutus: React.FC = () => {
                       </span>
                     </button>
                   </h2>
+                  <AnimatePresence  >
                   {openAccordion === 1 && (
-                    <div className="p-4 bg-[#191919] border-t border-white/20 rounded-b-lg">
-                      <p className="text-white font-primary">
+                    <motion.div 
+                    key="content"
+                    initial={{height:0,}}
+                    exit={{ height: 0 }}
+                    animate={{ height: "100px" }}
+                    transition={{ type: "spring", stiffness: 200,bounce:0.9, mass: 0.4,visualDuration:1,}}
+                    className="p-4 bg-[#191919]  border-t text-xs md:text-sm  border-white/20 rounded-b-lg">
+                      <p className="text-white  font-primary">
                         Our AI-powered Document Summarizer helps you quickly and accurately summarize your documents. Whether it's a lengthy report or a complex legal document, our tool can provide concise and meaningful summaries to save you time and effort.
                       </p>
-                    </div>
+                    </motion.div>
                   )}
+                  </AnimatePresence>
                 </div>
 
                 {/* Accordion Item 2 */}
@@ -55,11 +64,15 @@ const Aboutus: React.FC = () => {
                     </button>
                   </h2>
                   {openAccordion === 2 && (
-                    <div className="p-4 bg-[#191919] border-t border-white/20 rounded-b-lg">
+                    <motion.div  initial={{height:0}}
+                    exit={{ height: 0 }}
+                    animate={{ height: "100px" }}
+                    transition={{ type: "spring", stiffness: 200,bounce:0.25, mass: 0.5}}
+                    className="p-4 bg-[#191919]  text-xs md:text-sm border-t border-white/20 rounded-b-lg">
                       <p className="font-primary text-white">
                         Our AI Document Summarizer is completely free to use. We believe in providing accessible tools to help you manage your documents more efficiently without any cost.
                       </p>
-                    </div>
+                    </motion.div>
                   )}
                 </div>
 
@@ -77,18 +90,25 @@ const Aboutus: React.FC = () => {
                       </span>
                     </button>
                   </h2>
+                  <AnimatePresence>
                   {openAccordion === 3 && (
-                    <div
+                    <motion.div
+                    initial={{height:0}}
+                    exit={{ height: 0 }}
+
+                    animate={{ height: "100px" }}
+                    transition={{ type: "spring", stiffness: 200,bounce:0.25, mass: 0.5}}
                     className={`p-4 bg-[#191919] border-t border-white/20 rounded-b-lg transition-[max-height] duration-300 ease-in-out overflow-hidden ${
                       openAccordion === 3 ? "max-h-96" : "max-h-0"
                     }`}
                   >
-                    <p className="font-primary text-white">
+                    <p className="font-primary text-xs md:text-sm text-white">
                       Our tool works seamlessly across all major web browsers, including Chrome, Firefox, Safari, and Edge. You can access our Document Summarizer from any device with an internet connection.
                     </p>
-                  </div>
+                  </motion.div>
 
                   )}
+                  </AnimatePresence>
                 </div>
               </div>
 
@@ -123,13 +143,13 @@ const Aboutus: React.FC = () => {
           </div>
         </div>
       </div>
-
       {/* Footer */}
       <footer className="bg-black text-white py-4 mt-10 border-t border-gray-600/50">
         <div className="container mx-auto text-center">
           <p>&copy; 2025 Document Summarizer. All rights reserved.</p>
         </div>
       </footer>
+
     </>
   );
 };

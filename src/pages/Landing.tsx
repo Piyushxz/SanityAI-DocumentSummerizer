@@ -87,12 +87,12 @@ export const Landing = () => {
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 20 }}
             transition={{
-              duration: 0.3,
+              duration: 1.5,
               delay: 0.7,
               ease: "easeInOut",
               type: "spring",
-              bounce: 0.65,
-              visualDuration: 0.5,
+              bounce: 1,
+              stiffness:150,
             }}
             className="mt-6 flex gap-4"
           >
