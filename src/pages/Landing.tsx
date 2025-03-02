@@ -180,7 +180,7 @@ export const Landing = () => {
             }}
             className="flex justify-center overflow-hidden"
           >
-            <h1 className="font-primary tracking-tighter font-extrabold text-4xl md:text-6xl text-white">
+            <h1 className="font-primary tracking-tighter font-medium text-4xl md:text-6xl text-white">
               Features
             </h1>
           </motion.div>
