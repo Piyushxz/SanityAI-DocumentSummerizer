@@ -8,7 +8,7 @@ import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
-import { Rocket, VideoIcon } from "lucide-react";
+import { MailIcon, Newspaper, Rocket, Sparkles, VideoIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 
 export const Landing = () => {
@@ -65,8 +65,8 @@ export const Landing = () => {
                  animate={{ opacity: 1, y: 20 }}
          transition={{ type: "spring", stiffness: 200,bounce:0.1, duration:0.4,delay:0.5,damping:15}}
         className="px-4 rounded-full   bg-blue-600/20 flex gap-2 mb-5 py-2 max-w-fit flex items-center border border-blue-600/30 ">
-              <Rocket className="  size-4 text-blue-500/70" />
-              <h1 className="text-sm font-primary tracking-tighter font-medium text-blue-500/70">sanityAI beta ready to use.</h1>
+              <Rocket className="  size-6 text-white" />
+              <h1 className="text-md  font-primary tracking-tighter font-medium text-white">sanityAI beta ready to use.</h1>
             </motion.div>
           <motion.div
                     initial={{ opacity: 0, y: 0 }}
@@ -151,14 +151,43 @@ export const Landing = () => {
             
 
           </div>
-          <div className="w-full flex justify-center my-24 ">
-          
-              <h1 className="font-primary tracking-tighter font-extrabold text-3xl md:text-5xl text-white">How it works</h1>
-            
 
-          </div>
+          <div className="w-full flex justify-center mt-24 mb-[150px]">
+  <div className="grid grid-cols-12 border-white w-[80vw] md:w-[70vw]">
+    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center rounded-l-xl">
+      <div className="flex flex-col gap-2 ml-10">
+        <div className="flex gap-4 items-center">
+          <MailIcon className="text-blue-500 size-8" />
+          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Email</h1>
+        </div>
+        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">support@sanity.com</h1>
+      </div>
+    </div>
 
-          <div className="w-full flex justify-center  ">
+    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center">
+      <div className="flex flex-col gap-2 ml-10">
+        <div className="flex gap-4 items-center">
+          <Newspaper className="text-blue-500 size-8" />
+          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Media Inquiries</h1>
+        </div>
+        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">newspaper@sanity.com</h1>
+      </div>
+    </div>
+
+    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center rounded-r-xl">
+      <div className="flex flex-col gap-2 ml-10">
+        <div className="flex gap-4 items-center">
+          <Sparkles className="text-blue-500 size-8" />
+          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Beta Release</h1>
+        </div>
+        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">Version 0.9</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+          <div className="w-full flex justify-center mt-[300px] ">
           
             
             <div className="h-[70vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
@@ -228,7 +257,7 @@ export const Landing = () => {
  
 
         </div>
-          <div id="about-us">
+          <div id="about-us ">
             <Aboutus />
           </div>
 

@@ -54,9 +54,9 @@ const Features = () => {
           {featuresData.map((feature, index) => (
             <div
               key={index}
-              className={` hover:opacity-100 transition duration-300 p-6 text-center  border-l border-t border-b border-r md:brother-b-0 md:brother-r-0 md:border-l-0 md:border-t-0  border-gray-800 m-2 md:m-0 ${
-                (index + 1) % 3 !== 0 ? 'border-r' : ''
-              } ${index < featuresData.length - 3 ? 'border-b' : ''}`}
+              className={` hover:opacity-100 transition duration-300 p-6 text-center border border-gray-800  md:border-gray-800/50 m-2 md:m-0 ${
+                (index + 1) % 3 !== 0 ? 'border-r ' : ''
+              } ${index < featuresData.length - 3 ? 'border-b ' : ''}`}
             >
               <div className="group relative">
                 {/* Icon */}

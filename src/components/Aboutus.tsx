@@ -11,7 +11,7 @@ const Aboutus: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black">
+      <div className="min-h-screen bg-black mt-[300px]">
         <div className="container mx-auto p-4 mt-14">
           <div className="flex flex-col md:flex-row justify-center">
             <div className="md:w-1/2 w-full text-center md:text-left">
