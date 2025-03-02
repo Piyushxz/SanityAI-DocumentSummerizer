@@ -11,11 +11,11 @@ const Aboutus: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-black mt-[300px]">
+      <div className="min-h-screen bg-black mt-[150px]">
         <div className="container mx-auto p-4 mt-14">
           <div className="flex flex-col md:flex-row justify-center">
             <div className="md:w-1/2 w-full text-center md:text-left">
-              <h1 className="font-primary tracking-tighter font-extrabold text-4xl md:text-6xl text-white mb-6">
+              <h1 className="font-primary tracking-tighter font-bold text-4xl md:text-6xl text-white mb-6">
                 About Us
               </h1>
               <AnimatePresence>

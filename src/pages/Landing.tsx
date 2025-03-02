@@ -1,19 +1,43 @@
 import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
-import {motion, useMotionValueEvent, useScroll} from "motion/react"
+import {motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll} from "motion/react"
 import Aboutus from "../components/Aboutus"
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { RefObject, useEffect, useRef } from "react";
 import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
-import { MailIcon, Newspaper, Rocket, Sparkles, VideoIcon } from "lucide-react";
+import {  Rocket, VideoIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
-import ss from "../assets/ss.png"
+import ss2 from "../assets/ss2.png"
+
 import stars from "../assets/stars.png"
 import gridline from "../assets/grid-lines.png"
+import { Testimonials } from "@/components/Testimonials";
 
+const usrRelativeMousePosition = (to:RefObject<HTMLElement>)=>{
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const updateMousePosition = (event:MouseEvent)=>{
+      if(!to.current){
+        return;
+      }
+    const {top,left} = to.current.getBoundingClientRect();
+      mouseX.set(event.x - left)
+      mouseY.set(event.y - top)
+
+  }
+  useEffect(()=>{
+    window.addEventListener('mousemove', updateMousePosition)
+  
+    return()=>{
+      window.removeEventListener('mousemove',updateMousePosition)
+    }
+  },[])
+  return [mouseX,mouseY]
+}
 
 export const Landing = () => {
   const navigate = useNavigate()
@@ -59,8 +83,21 @@ export const Landing = () => {
   const col3 = useTransform(iconScrollYProgress3,[0,1],["#191919","#3B82F6"])
 
 
+  
+  const sectionRef = useRef<HTMLElement>(null)
+  const {scrollYProgress}=useScroll({
+    target:sectionRef,
+    offset:['start end','end start']
+  })
 
-    return (
+
+ 
+  const backgroundPositionY = useTransform(scrollYProgress,[0,1],[-300,300])
+  const borderedDivRef = useRef<HTMLDivElement>(null)
+  const [mouseX, mouseY] = usrRelativeMousePosition(borderedDivRef);
+
+  const imgMask = useMotionTemplate`radial-gradient(50% 50% at ${mouseX}px ${mouseY}px, black, transparent)`;
+  return (
       <div className="overflow-x-hidden  ">
         <Navbar />
         <div className="flex flex-col items-center justify-center mt-[150px] md:[100px]">
@@ -150,15 +187,18 @@ export const Landing = () => {
           <Features />
             <div className="w-full flex justify-center">
             <div className="w-[90vw] md:w-[80vw] lg:w-[70vw] border border-white/20 p-2.5 rounded-xl mt-3">
-                <div style={{backgroundImage :`url(${ss})`}}
+                <div style={{backgroundImage :`url(${ss2})`}}
                 className="aspect-video bg-cover border border-white/20 rounded-lg">
 
                 </div>
             </div>
             </div>
 
-            <div className="w-full flex justify-center mt-[300px] ">
-          
+            <h2 className="text-5xl md:text-6xl text-center tracking-tighter font-primary font-medium text-white  mt-[200px]">
+          How it works
+        </h2>
+            <div className="w-full flex justify-center mb-[150px] mt-[100px]">
+  
             
           <div className="h-[70vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
            <motion.span
@@ -173,15 +213,16 @@ export const Landing = () => {
             
           </motion.span> 
 
-
+  
           <div className="">
+
           <motion.div
           ref={iconRef}
           style={{ color: col }}
           className="absolute mb-6  -translate-x-38">
             <SearchFolderIcon className="text-inherit size-28" />
           </motion.div>
-
+   
           <div className="w-40 h-24 mt-8 translate-x-4 ">
             <span className="rounded-full font-primary bg-[#3B82F6] px-4 py-2 text-white ">1</span>
             <h1 className="font-primary tracking-tighter font-normal text-xl text-white px-2 mt-4">Select a PDF</h1>
@@ -227,11 +268,29 @@ export const Landing = () => {
 
 
       </div>
-          <div className="w-full flex justify-center my-[200px] ">
-              <section className="py-20  w-[90vw]  md:w-[70vw]">
-                <div style={{backgroundImage:`url(${stars})`}}
-                 className="border border-white/15 py-24 rounded-xl overflow-hidden relative">
-                    <div style={{backgroundImage:`url(${gridline})`}} className="absolute inset-0 bg-[rgba(0,48,135,1)] bg-blend-overlay [mask-image:radial-gradient(50%_50%_at+50%_35%,black,transparent)] ">                    </div>
+
+
+      
+          <div className="w-full flex justify-center my-[50px] ">
+              <section 
+              ref={sectionRef}
+              className="py-20  w-[90vw]  md:w-[70vw]">
+                <motion.div
+                ref={borderedDivRef}
+                animate={{
+                  backgroundPositionX:"400px"
+                }}
+                transition={{
+                    repeat:Infinity,
+                    duration:40,
+                    ease:'linear'
+                }}
+                 style={{backgroundPositionY,backgroundImage:`url(${stars})`}}
+                 className="border border-white/15 py-24 rounded-xl overflow-hidden relative group ">
+                    <div style={{backgroundImage:`url(${gridline})`}} className="absolute inset-0 bg-[rgba(0,48,135,1)] bg-blend-overlay [mask-image:radial-gradient(50%_50%_at+50%_35%,black,transparent)] group-hover:opacity-0 transition duration-700">                    </div>
+                    <motion.div
+                     style={{maskImage:imgMask,backgroundImage:`url(${gridline})`}} className="absolute inset-0 bg-[rgba(0,48,135,1)] bg-blend-overlay [mask-image:radial-gradient(50%_50%_at_0px_0px,black,transparent)] opacity-0 group-hover:opacity-100 duration-700">                    </motion.div>
+
                     <div className="relative">
                     <h2 className="text-5xl md:text-6xl max-w-sm mx-auto tracking-tight text-center text-white font-primary font-medium">
                 Document, Summarize, and More
@@ -247,45 +306,18 @@ export const Landing = () => {
                         </div>
                     </div>
 
-                </div>
+                </motion.div>
               </section>
 
 
           </div>
 
-          <div className="w-full flex justify-center mt-24 mb-[150px]">
-  <div className="grid grid-cols-12 border-white w-[80vw] md:w-[70vw]">
-    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center rounded-l-xl">
-      <div className="flex flex-col gap-2 ml-10">
-        <div className="flex gap-4 items-center">
-          <MailIcon className="text-blue-500 size-8" />
-          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Email</h1>
-        </div>
-        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">support@sanity.com</h1>
-      </div>
-    </div>
 
-    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center">
-      <div className="flex flex-col gap-2 ml-10">
-        <div className="flex gap-4 items-center">
-          <Newspaper className="text-blue-500 size-8" />
-          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Media Inquiries</h1>
-        </div>
-        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">newspaper@sanity.com</h1>
-      </div>
-    </div>
+          
+           <div className="w-full flex justify-center">
+           <Testimonials/>
 
-    <div className="grid col-span-12 md:col-span-4 border border-blue-500/30 h-48 flex items-center rounded-r-xl">
-      <div className="flex flex-col gap-2 ml-10">
-        <div className="flex gap-4 items-center">
-          <Sparkles className="text-blue-500 size-8" />
-          <h1 className="font-primary text-white tracking-tighter text-2xl font-medium">Beta Release</h1>
-        </div>
-        <h1 className="font-primary text-white tracking-tighter text-xl font-normal">Version 0.9</h1>
-      </div>
-    </div>
-  </div>
-</div>
+           </div>
 
 
 
