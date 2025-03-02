@@ -8,7 +8,7 @@ import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
-import { VideoIcon } from "lucide-react";
+import { Rocket, VideoIcon } from "lucide-react";
 import { Footer } from "@/components/Footer";
 
 export const Landing = () => {
@@ -59,28 +59,35 @@ export const Landing = () => {
     return (
       <div className="overflow-x-hidden  ">
         <Navbar />
-        <div className="flex flex-col items-center justify-center mt-24">
+        <div className="flex flex-col items-center justify-center mt-[150px] md:[100px]">
+        <motion.div 
+                 initial={{ opacity: 0, y: 0 }}
+                 animate={{ opacity: 1, y: 20 }}
+         transition={{ type: "spring", stiffness: 200,bounce:0.1, duration:0.4,delay:0.5,damping:15}}
+        className="px-4 rounded-full   bg-blue-600/20 flex gap-2 mb-5 py-2 max-w-fit flex items-center border border-blue-600/30 ">
+              <Rocket className="  size-4 text-blue-500/70" />
+              <h1 className="text-sm font-primary tracking-tighter font-medium text-blue-500/70">sanityAI beta ready to use.</h1>
+            </motion.div>
           <motion.div
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: 1, y: 20 }}
-            transition={{
-              duration: 0.4,
-              delay: 0.5,
-              ease: "easeInOut",
-              type: "spring",
-              bounce: 0.65,
-              stiffness:200,
-            }}
-            className="w-full md:w-1/2 text-center"
+                    initial={{ opacity: 0, y: 0 }}
+                    animate={{ opacity: 1, y: 20 }}
+                    transition={{         
+                         ease: "easeInOut",
+                      type: "spring",
+                      bounce: 1,
+                      stiffness:150, duration:0.4,delay:0.5}}
+            className="w-[80vw] md:w-1/2 text-center"
           >
+
+
             <h1 className="font-primary tracking-tighter font-extrabold text-5xl md:text-7xl text-white">
               Document{" "}
-              <span className="w-fit bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text pr-1.5 text-center text-transparent md:mb-4">
+              <span className="w-[85vw] bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text pr-1.5 text-center text-transparent md:mb-4">
                 Summerizer
               </span>{" "}
               Using RAG.
             </h1>
-            <h3 className="font-primary tracking-tighter font-bold text-md md:text-xl mt-4 text-white opacity-80">
+            <h3 className="font-primary tracking-tighter font-semibold text-md md:text-lg mt-4 text-white opacity-80">
               Summarize.Chat.And More
             </h3>
           </motion.div>
@@ -100,7 +107,7 @@ export const Landing = () => {
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={() => navigate('/login')}
-        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-10"
+        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-normal hover:opacity-80 transition-all duration-300 h-11 rounded-md px-6 md:px-10"
       >
         Start Now
       </motion.button>
@@ -109,7 +116,7 @@ export const Landing = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => window.open('https://youtu.be/47pB5RoGcyo')}
 
-        className="inline-flex font-primary flex gap-2 tracking-tighter items-center justify-center bg-white  to-blue-700 text-black font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-10"
+        className="inline-flex font-primary flex gap-2 tracking-tighter items-center justify-center bg-white  to-blue-700 text-black font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-6 md:px-10"
       >
         <VideoIcon/>
         Watch Video
@@ -123,11 +130,12 @@ export const Landing = () => {
             initial={{ opacity: 0, y: 0}}
             animate={{ opacity: 1, y: -20}}
             transition={{
-              duration: 0.3,
+              duration: 0.7,
               delay: 0.9,
               type: "spring",
-              bounce: 0.65,
-              visualDuration: 0.5,
+              bounce: 0.5,
+              damping:30,
+              visualDuration: 1.2,
             }}
             className="flex justify-center overflow-hidden"
           >

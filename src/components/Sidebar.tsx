@@ -4,7 +4,7 @@ import { SidebarOpenIcon } from "./icons/SidebarOpenIcon";
 import HomeIcon from "./icons/HomeIcon";
 import { SidebarOption } from "./SidebarOption";
 import FavoritesIcon from "./icons/FavourtieIcon";
-import { motion } from "framer-motion";
+import {  motion } from "framer-motion";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { DoucumentIcon } from "./icons/DocuementIcon";
 
@@ -18,7 +18,7 @@ export const Sidebar = () => {
     const setShowArchivedDocuments = useSetRecoilState(showIsArchivedDocuments);
 
     return (
-        <motion.div
+                    <motion.div
             animate={{ x: isSidebarOpen ? 0 : "-100%" }}
             initial={{ x: "-100%" }}
             transition={{
@@ -66,5 +66,6 @@ export const Sidebar = () => {
                 />
             </div>
         </motion.div>
+
     );
 };
