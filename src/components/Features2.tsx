@@ -22,7 +22,8 @@ const featuresData = [
 
 export const Features2 = () => {
     return (
-        <section className="bg-black text-white py-[72px] font-primary bg-gradient-to-t from-black to-blue-600 via-blue-600/20">
+        <div className='flex justify-center w-[100vw] bg-gradient-to-t from-black to-blue-600 via-blue-600/20'>
+      <section className="bg-black text-white py-[72px] font-primary w-[100vw] md:w-[80vw]  bg-gradient-to-t from-black to-blue-600 via-blue-600/20">
             <div className="container">
                 <h2 className="text-center font-bold text-5xl tracking-tighter">Everything you Need</h2>
                 <div className="max-w-xl mx-auto">
@@ -31,7 +32,7 @@ export const Features2 = () => {
                     </p>
                 </div>
 
-                <div className="mt-16 flex sm:flex-row flex-col gap-4 px-8">
+                <div className="mt-16 flex sm:flex-row flex-col gap-4 px-8 ">
                     {featuresData.map(({ icon, title, description }) => (
                         <div key={title} className="rounded-xl bg-black border font-primary tracking-tight border-white/15 px-5 py-10 text-center">
                             <div className="inline-flex h-14 w-14  justify-center items-center rounded-lg border border-white/15 p-2">
@@ -44,5 +45,7 @@ export const Features2 = () => {
                 </div>
             </div>
         </section>
+        </div>
+  
     );
 };
