@@ -26,7 +26,7 @@ const testimonials = [
 
 export const Testimonials = () => {
   return (
-    <section className="py-20 md:py-24">
+    <section className="py-20 ">
       <div className="container w-[90vw] md:w-[70vw]">
         <h2 className="text-5xl md:text-6xl text-center tracking-tighter font-primary font-medium text-white">
           Beyond Expectations

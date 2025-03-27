@@ -1,6 +1,5 @@
 
 import { Navbar } from "../components/Navbar"
-import Features from "../components/Featurs"
 import {motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll} from "motion/react"
 import Aboutus from "../components/Aboutus"
 import { useNavigate } from "react-router-dom";
@@ -16,6 +15,7 @@ import ss2 from "../assets/ss2.png"
 import stars from "../assets/stars.png"
 import gridline from "../assets/grid-lines.png"
 import { Testimonials } from "@/components/Testimonials";
+import { Features2 } from "@/components/Features2";
 
 const usrRelativeMousePosition = (to:RefObject<HTMLElement>)=>{
   const mouseX = useMotionValue(0);
@@ -101,7 +101,7 @@ export const Landing = () => {
   return (
       <div className="overflow-x-hidden  ">
         <Navbar />
-        <div className="flex flex-col items-center justify-center mt-[50px] md:mt-[100px]">
+        <div className="flex flex-col items-center justify-center mt-[100px]">
         <motion.div 
                  initial={{ opacity: 0, y: 0 }}
                  animate={{ opacity: 1, y: 20 }}
@@ -207,15 +207,12 @@ export const Landing = () => {
             </motion.div>
 
             </div>
-            <h1 className=" bg-gradient-to-t from-black to-blue-500 pt-20 font-primary text-center tracking-tighter font-medium text-4xl md:text-6xl text-white">
-              Features
-            </h1>
-          <Features />
+                  <Features2/>
 
-            <h2 className="text-5xl md:text-6xl text-center tracking-tighter font-primary font-medium text-white  mt-[200px]">
+            <h2 className="text-5xl md:text-6xl text-center tracking-tighter font-primary font-medium text-white  py-[72px]">
           How it works
         </h2>
-            <div className="w-full flex justify-center mb-[150px] mt-[100px]">
+            <div className="w-full flex justify-center py-[50px]">
   
             
           <div className="h-[70vh] md:h-[50vh] lg:h-[70vh]  bg-[#191919] w-1 rounded-lg">
