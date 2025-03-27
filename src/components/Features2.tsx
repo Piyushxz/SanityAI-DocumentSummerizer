@@ -22,7 +22,7 @@ const featuresData = [
 
 export const Features2 = () => {
     return (
-        <section className="bg-black text-white py-[72px] font-primary bg-gradient-to-t from-black to-blue-500 via-blue-500/50">
+        <section className="bg-black text-white py-[72px] font-primary bg-gradient-to-t from-black to-blue-600 via-blue-600/20">
             <div className="container">
                 <h2 className="text-center font-bold text-5xl tracking-tighter">Everything you Need</h2>
                 <div className="max-w-xl mx-auto">

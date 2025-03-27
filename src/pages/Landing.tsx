@@ -188,7 +188,7 @@ export const Landing = () => {
           >
 
           </motion.div>
-          <div className="w-[100vw] flex justify-center bg-gradient-to-b from-black to-blue-500 via-blue-500/50">
+          <div className="w-[100vw] flex justify-center bg-gradient-to-b from-black to-blue-600 via-blue-600/50">
             <motion.div 
                         initial={{ opacity: 0, }}
                         animate={{ opacity: 1,}}
@@ -286,7 +286,7 @@ export const Landing = () => {
 
 
       
-          <div className="w-full flex justify-center my-[50px] ">
+          <div className="w-full flex justify-center pt-10 ">
               <section 
               ref={sectionRef}
               className="py-20  w-[90vw]  md:w-[70vw]">
