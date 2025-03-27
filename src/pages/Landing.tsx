@@ -1,3 +1,4 @@
+
 import { Navbar } from "../components/Navbar"
 import Features from "../components/Featurs"
 import {motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll} from "motion/react"
@@ -8,7 +9,7 @@ import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
-import {  CirclePlay, Rocket, Sparkles, VideoIcon, Waypoints } from "lucide-react";
+import {  CirclePlay, Rocket, Waypoints } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import ss2 from "../assets/ss2.png"
 
@@ -187,7 +188,7 @@ export const Landing = () => {
           >
 
           </motion.div>
-          <div className="w-full flex justify-center">
+          <div className="w-[100vw] flex justify-center bg-gradient-to-b from-black to-blue-500 via-blue-500/50">
             <motion.div 
                         initial={{ opacity: 0, }}
                         animate={{ opacity: 1,}}
@@ -206,7 +207,7 @@ export const Landing = () => {
             </motion.div>
 
             </div>
-            <h1 className=" pt-20 font-primary text-center tracking-tighter font-medium text-4xl md:text-6xl text-white">
+            <h1 className=" bg-gradient-to-t from-black to-blue-500 pt-20 font-primary text-center tracking-tighter font-medium text-4xl md:text-6xl text-white">
               Features
             </h1>
           <Features />

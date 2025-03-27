@@ -16,14 +16,14 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
   
-    // Ensure username and password are not empty
     if (!username || !password) {
       toast.error("Username and password are required!");
       return;
     }
   
     setIsLoading(true);
-  
+    const loadId = toast.loading("Logging In..")
+
     try {
       const response = await axios.post("https://be1.piyushxz.online/api/v1/user/signin", {
         username,
@@ -47,14 +47,13 @@ const Login: React.FC = () => {
           toast.error(error.response.data.message || "An unexpected error occurred");
         }
       } else if (error.request) {
-        // No response from server
         toast.error("No response from server. Please check your connection.");
       } else {
-        // Other errors (e.g., network issues)
         toast.error("An error occurred. Please try again.");
       }
     } finally {
       setIsLoading(false);
+      toast.dismiss(loadId)
     }
   };
   
