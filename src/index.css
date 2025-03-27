@@ -25,3 +25,24 @@
 
 }
 
+@layer utilities {
+  .font-custom {
+    font-family: "GT Walsheim Medium", sans-serif;
+  }
+  .text-42 {
+    font-size: 42px;
+  }
+  .tracking-custom {
+    letter-spacing: -0.05em;
+  }
+  .leading-custom {
+    line-height: 1.1em;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .text-white {
+    color: rgb(255, 255, 255);
+  }
+}
+

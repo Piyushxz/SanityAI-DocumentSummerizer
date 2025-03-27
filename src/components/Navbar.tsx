@@ -15,9 +15,9 @@ export const Navbar = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2, ease: "easeInOut" }}
-        className="w-full flex flex-col justify-center bg-black border-b border-gray-400/50 fixed md:relative z-50"
+        className="w-full flex  flex-col justify-center bg-neutral-750 backdrop-blur-sm border-b border-white/15 fixed  z-50"
       >
-        <div className="w-full md:w-[80vw] flex justify-between p-3 mx-auto">
+        <div className="w-full md:w-[80vw]  flex justify-between p-3 mx-auto">
           <h1
             className="font-primary font-extrabold text-[#FDFEFF] text-3xl tracking-tighter bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text text-transparent cursor-pointer"
             onClick={() => navigate("/")}

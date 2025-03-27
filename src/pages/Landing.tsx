@@ -8,7 +8,7 @@ import { useTransform } from "motion/react";
 import SearchFolderIcon from "../components/icons/SearchFolderIcon";
 import UploadFolderIcon from "../components/icons/UploadFolder";
 import MessagesIcon from "../components/icons/MessagesIcon";
-import {  Rocket, VideoIcon } from "lucide-react";
+import {  CirclePlay, Rocket, Sparkles, VideoIcon, Waypoints } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import ss2 from "../assets/ss2.png"
 
@@ -100,7 +100,7 @@ export const Landing = () => {
   return (
       <div className="overflow-x-hidden  ">
         <Navbar />
-        <div className="flex flex-col items-center justify-center mt-[150px] md:[100px]">
+        <div className="flex flex-col items-center justify-center mt-[50px] md:mt-[100px]">
         <motion.div 
                  initial={{ opacity: 0, y: 0 }}
                  animate={{ opacity: 1, y: 20 }}
@@ -109,29 +109,31 @@ export const Landing = () => {
               <Rocket className="  size-4 text-blue-500/70" />
               <h1 className="text-sm  font-primary tracking-tighter font-medium text-blue-500/70">sanityAI beta ready to use.</h1>
             </motion.div>
-          <motion.div
-                    initial={{ opacity: 0, y: 0 }}
-                    animate={{ opacity: 1, y: 20 }}
-                    transition={{         
-                         ease: "easeInOut",
-                      type: "spring",
-                      bounce: 1,
-                      stiffness:150, duration:0.4,delay:0.5}}
-            className="w-[80vw] md:w-1/2 text-center"
-          >
+                    <motion.div
+          initial={{ opacity: 0, y: 0 }}
+          animate={{ opacity: 1, y: 20 }}
+          transition={{
+            ease: "easeInOut",
+            type: "spring",
+            bounce: 0.6, 
+            stiffness: 120, 
+            duration: 0.5,
+            delay: 0.4,
+          }}
+          className="w-[85vw] md:w-1/2 text-center flex flex-col items-center justify-center"
+        >
+          <h1 className="max-w-[600px] font-primary font-bold text-5xl md:text-7xl tracking-tighter text-center text-white">
+            Just Summarize with{" "}
+            <span className="bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text  text-transparent">
+              sanityAI
+            </span>
+          </h1>
+          
+          <h3 className="font-primary tracking-tighter font-semibold text-lg md:text-xl mt-3 text-white opacity-80">
+            Summarize, Chat, and More.
+          </h3>
+        </motion.div>
 
-
-            <h1 className="font-primary tracking-tighter font-extrabold text-5xl md:text-7xl text-white">
-              Document{" "}
-              <span className="w-[85vw] bg-gradient-to-b from-blue-400 to-blue-700 bg-clip-text pr-1.5 text-center text-transparent md:mb-4">
-                Summerizer
-              </span>{" "}
-              Using RAG.
-            </h1>
-            <h3 className="font-primary tracking-tighter font-semibold text-md md:text-lg mt-4 text-white opacity-80">
-              Summarize.Chat.And More
-            </h3>
-          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 0 }}
             animate={{ opacity: 1, y: 20 }}
@@ -140,16 +142,19 @@ export const Landing = () => {
               delay: 0.7,
               ease: "easeInOut",
               type: "spring",
-              bounce: 1,
-              stiffness:150,
+              bounce: 0.6, 
+              stiffness: 120, 
+ 
             }}
             className="mt-6 flex gap-4"
           >
       <motion.button
         whileTap={{ scale: 0.95 }}
         onClick={() => navigate('/login')}
-        className="inline-flex font-primary tracking-tighter items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white font-normal hover:opacity-80 transition-all duration-300 h-11 rounded-md px-6 md:px-10"
+        className="inline-flex font-primary tracking-tighter gap-2 items-center justify-center bg-gradient-to-b from-blue-400 to-blue-700 text-white  hover:opacity-80 transition-all duration-300  rounded-md px-6 py-3 md:px-8"
       >
+
+        <Waypoints className="size-4"/>
         Start Now
       </motion.button>
       <motion.button
@@ -157,16 +162,16 @@ export const Landing = () => {
         whileTap={{ scale: 0.95 }}
         onClick={() => window.open('https://youtu.be/47pB5RoGcyo')}
 
-        className="inline-flex font-primary flex gap-2 tracking-tighter items-center justify-center bg-white  to-blue-700 text-black font-medium hover:opacity-80 transition-all duration-300 h-11 rounded-md px-6 md:px-10"
+        className="inline-flex font-primary flex gap-2 tracking-tighter items-center justify-center bg-white/5 text-white border border-white/15  to-blue-700 text-black  hover:opacity-80 transition-all duration-300  rounded-md px-4 md:px-10 "
       >
-        <VideoIcon/>
+        <CirclePlay className="size-4"/>
         Watch Video
       </motion.button>
 
           </motion.div>
         </div>
   
-        <div className="mt-[150px]">
+        <div className="mt-[50px]">
           <motion.div
             initial={{ opacity: 0, y: 0}}
             animate={{ opacity: 1, y: -20}}
@@ -180,19 +185,31 @@ export const Landing = () => {
             }}
             className="flex justify-center overflow-hidden"
           >
-            <h1 className="font-primary tracking-tighter font-medium text-4xl md:text-6xl text-white">
-              Features
-            </h1>
+
           </motion.div>
-          <Features />
-            <div className="w-full flex justify-center">
-            <div className="w-[90vw] md:w-[80vw] lg:w-[70vw] border border-white/20 p-2.5 rounded-xl mt-3">
+          <div className="w-full flex justify-center">
+            <motion.div 
+                        initial={{ opacity: 0, }}
+                        animate={{ opacity: 1,}}
+                        transition={{
+                          duration: 1,
+                          delay: 0.7,
+                          ease: "easeInOut",
+                      
+                        
+                        }}
+            className="w-[90vw] md:w-[80vw] lg:w-[70vw] border border-white/20 p-2.5 rounded-xl mt-3">
                 <div style={{backgroundImage :`url(${ss2})`}}
                 className="aspect-video bg-cover border border-white/20 rounded-lg">
 
                 </div>
+            </motion.div>
+
             </div>
-            </div>
+            <h1 className=" pt-20 font-primary text-center tracking-tighter font-medium text-4xl md:text-6xl text-white">
+              Features
+            </h1>
+          <Features />
 
             <h2 className="text-5xl md:text-6xl text-center tracking-tighter font-primary font-medium text-white  mt-[200px]">
           How it works
