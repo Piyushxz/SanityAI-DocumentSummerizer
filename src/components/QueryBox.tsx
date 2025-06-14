@@ -1,74 +1,70 @@
-import {   useRecoilValue} from "recoil";
+import { useRecoilValue } from "recoil";
 import { ChatBubble } from "./ChatBubble";
 import { isAIResultLoading, isHistoryLoading, messages } from "../atoms";
-import { useRef
- } from "react";
+import { useRef } from "react";
 import { ChatBubbleLoading } from "./ChatBubbleLoading";
 import { useEffect } from "react";
-
 import { ThreeDot } from "react-loading-indicators";
 
 export const QueryBox = () => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const allMessages = useRecoilValue(messages)
-  const isLoading = useRecoilValue(isAIResultLoading)
-  const isLoadingChatHistory = useRecoilValue(isHistoryLoading)
-  
+  const containerRef = useRef<HTMLDivElement>(null);
+  const loadingRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
+  const allMessages = useRecoilValue(messages);
+  const isLoading = useRecoilValue(isAIResultLoading);
+  const isLoadingChatHistory = useRecoilValue(isHistoryLoading);
 
-
-
-    useEffect(()=>{
-
-      
-      const scrollToBottom = () => {
-        containerRef.current?.scrollIntoView({ behavior: 'smooth' });
-      };
-
-      scrollToBottom();
-
-
-
-
-      return ()=>{
+  useEffect(() => {
+    const scrollToNewMessage = () => {
+      // If loading, scroll to the loading bubble with offset for navbar
+      if (isLoading && loadingRef.current) {
+        loadingRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start' // This ensures it scrolls to the top of the element
+        });
+      } else if (lastMessageRef.current) {
+        // Scroll to the start of the last message instead of bottom
+        lastMessageRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start' // This shows the top of the message
+        });
       }
-    },[allMessages])
+    };
 
-      return (
+    // Only scroll when there are messages
+    if (allMessages.length > 0) {
+      scrollToNewMessage();
+    }
+  }, [allMessages.length, isLoading]); // Changed dependency to allMessages.length
 
-        <div className="flex flex-col gap-2 p-2 w-full ">
+  return (
+    <div className="flex flex-col gap-2 p-2 w-full">
+      {!isLoadingChatHistory ? (
+        <>
+          <ChatBubble text="hey" variant="Bot" />
+          {allMessages.map(({ content, sentBy, isHistory }, index) => (
+            <ChatBubble
+              key={index}
+              text={content}
+              variant={sentBy}
+              isActive={!isHistory}
+              ref={index === allMessages.length - 1 ? lastMessageRef : null}
+            />
+          ))}
 
-          { 
-          !isLoadingChatHistory? (
-            <>
-                  <ChatBubble text="hey" variant="Bot" />
-    
-            {
-                allMessages.map(({content,sentBy,isHistory})=><ChatBubble text={content} variant={sentBy} isActive={!isHistory}/>)
-            }
-            {
-                isLoading &&
-                <ChatBubbleLoading/>
-    
-            }
-            <div ref={containerRef}/>
-            </>
+          {isLoading && (
+            <div ref={loadingRef}>
+              <ChatBubbleLoading />
+            </div>
+          )}
 
-          )
-          :(
-            <div className="flex justify-center items-center translate-y-48">
-            <ThreeDot variant="brick-stack" color="#5c8dda" size="large" text="" textColor="#ffffff" />
-          </div>
-          )
-
-          
-          }
-          
-
+          <div ref={containerRef} />
+        </>
+      ) : (
+        <div className="flex justify-center items-center translate-y-48">
+          <ThreeDot variant="brick-stack" color="#5c8dda" size="large" text="" textColor="#ffffff" />
         </div>
-      );
-    
-
- 
-
-  };
-  
+      )}
+    </div>
+  );
+};

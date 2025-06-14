@@ -30,7 +30,7 @@ export const Modal = () => {
     
         try {
             await toast.promise(
-                axios.post(`https://be1.piyushxz.online/api/v1/upload`, formData, {
+                axios.post(`http://localhost:3003/api/v1/upload`, formData, {
                     headers: {
                         Authorization:localStorage.getItem("token"),
                     },

@@ -14,7 +14,7 @@ export const DeleteModal = ()=>{
 
             setIsDelModalOpen(false)
             const response = await toast.promise(
-                axios.delete(`https://be1.piyushxz.online/api/v1/documents`, {
+                axios.delete(`http://localhost:3003/api/v1/documents`, {
                     headers: {
                         Authorization:
                             localStorage.getItem("token"),
