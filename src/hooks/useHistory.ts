@@ -17,7 +17,7 @@ export const useHistory =  ({roomId}:{
         (async ()=>{
 
             try{
-                const response = await axios.get(`http://localhost:3003/api/v1/history/${roomId}`,{
+                const response = await axios.get(`https://be1.piyushxz.online/api/v1/history/${roomId}`,{
                     headers:{
                         Authorization:localStorage.getItem("token")
                     }
