@@ -13,7 +13,7 @@ export const useDocument =  ()=>{
     const  [isLoadingDocs,setIsLoadingDocs] = useState(false)
 
     
-    const url = showArchivedDocuments ? `https://be1.piyushxz.online/api/v1/favourite` : `http://be1.piyushxz.online/api/v1/documents`
+    const url = showArchivedDocuments ? `https://be1.piyushxz.online/api/v1/favourite` : `https://be1.piyushxz.online/api/v1/documents`
 
 
    async function getDocuments(){
